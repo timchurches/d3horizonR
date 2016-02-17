@@ -5,7 +5,6 @@ import {axisTop} from 'd3-axis';
 
 export default function() {
 
-
 	// default settings:
 	var colors = ['#3182bd', '#08519c'],
 		bands = colors.length,
@@ -24,7 +23,8 @@ export default function() {
 		y = scaleLinear()
 			.range([height, 0]),
 		// the draw function that redraws the chart:
-		_draw = undefined;
+		_draw = undefined,
+		canvas = undefined;
 
 	/*
 	 * Appends a canvas element to the current element
@@ -36,11 +36,14 @@ export default function() {
 		var increment = step + spacing;
 
 		// update the width
-		//width = horizon.node().getBoundingClientRect().width;
-		width = increment * data.length;
+		width = horizon.node().getBoundingClientRect().width;
+		//width = increment * data.length;
 
-		var canvas = horizon
-			.append("canvas")
+		if (!canvas) {
+			canvas = horizon.append("canvas");
+		}
+
+		canvas
 			.attr("width", width)
 			.attr("height", height);
 
@@ -135,6 +138,10 @@ export default function() {
 
 	my.axis = function(_) {
  		return arguments.length ? (axis = _, my) : axis;
+	};
+
+	my.canvas = function(_) {
+ 		return arguments.length ? (canvas = _, my) : canvas;
 	};
 
 	// Array of colors representing the number of bands

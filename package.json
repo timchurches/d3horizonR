@@ -1,7 +1,7 @@
 {
   "name": "d3-horizon-chart",
   "version": "0.0.1",
-  "description": "D3 Plugin that draw horizon charts.",
+  "description": "D3 Plugin that draws horizon charts using canvas.",
   "keywords": [
     "d3"
   ],
