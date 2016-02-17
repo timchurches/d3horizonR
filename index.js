@@ -1,1 +1,1 @@
-export {default as foo} from "./src/foo";
+export {default as horizonChart} from "./src/horizon-chart";
