@@ -28,6 +28,8 @@ Todo..
 - [ ] Add support for negative bands
 - [ ] Add API reference
 - [ ] Add a simple usage example
+- [ ] Show values on mouse over (Add support)
+- [ ] Add an example for responsive web pages
 - [ ] Add axis support
 - [ ] Add it to the d3 plug-ins list
 - [ ] Horizon Groups (i.e. cubism.js Context)
