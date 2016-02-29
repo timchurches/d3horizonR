@@ -26,7 +26,9 @@ Todo..
 
 - [x] Publish initial version
 - [ ] Add support for negative bands
+- [ ] Add API reference
 - [ ] Add a simple usage example
 - [ ] Add axis support
+- [ ] Add it to the d3 plug-ins list
 - [ ] Horizon Groups (i.e. cubism.js Context)
 - [ ] Handle canvas elements larger than 32767 px
