@@ -1,7 +1,7 @@
 # d3-horizon-chart
 
 `d3-horizon-chart` is a d3 plugin that draws horizon charts using an Html5 Canvas.
-It provides an easy way to visuale large amounts of time series data.
+It provides an easy way to visualize large amounts of time series data.
 
 
 The plugin is heavily inspired by [cubism.js](https://square.github.io/cubism/), but doesn't make assumptions about real-time metrics and back-end servers such as Cube/Graphite.
