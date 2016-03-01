@@ -30,6 +30,9 @@ Todo..
 - [x] Add a simple usage example
 - [ ] Add more examples + code samples
 - [ ] Build the examples page with basscss + Add the badges
+- [ ] Add eslint + indent rules
+- [ ] Basic test coverage
+- [ ] Travis-ci build integration
 - [ ] Add support for negative bands
 - [ ] Add API reference
 - [ ] Show values on mouse over (Add support)
