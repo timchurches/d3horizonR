@@ -14,9 +14,10 @@
     "url": "https://github.com/kmandov/d3-horizon-chart.git"
   },
   "scripts": {
-    "pretest": "mkdir -p build && node -e 'process.stdout.write(\"var version = \\\"\" + require(\"./package.json\").version + \"\\\"; export * from \\\"../index\\\"; export {version};\");' > build/bundle.js && rollup -f umd -n d3_horizon_chart -o build/d3-horizon-chart.js -- build/bundle.js",
+    "pretest": "mkdir -p build && node -e 'process.stdout.write(\"var version = \\\"\" + require(\"./package.json\").version + \"\\\"; export * from \\\"../index\\\"; export {version};\");' > build/bundle.js && rollup -f umd -g d3-array:d3_array,d3-axis:d3_axis,d3-selection:d3_selection,d3-scale:d3_scale -n d3_horizon_chart -o build/d3-horizon-chart.js -- build/bundle.js",
     "test": "faucet `find test -name '*-test.js'`",
-    "prepublish": "npm run test && uglifyjs build/d3-horizon-chart.js -c -m -o build/d3-horizon-chart.min.js && rm -f build/d3-horizon-chart.zip && zip -j build/d3-horizon-chart.zip -- LICENSE README.md build/d3-horizon-chart.js build/d3-horizon-chart.min.js"
+    "prepublish": "npm run test && uglifyjs build/d3-horizon-chart.js -c -m -o build/d3-horizon-chart.min.js && rm -f build/d3-horizon-chart.zip && zip -j build/d3-horizon-chart.zip -- LICENSE README.md build/d3-horizon-chart.js build/d3-horizon-chart.min.js",
+    "dev": "chokidar 'src/*.js' -c 'npm install'"
   },
   "devDependencies": {
     "faucet": "0.0",

@@ -1,6 +1,7 @@
 import {select} from 'd3-selection';
 import {scaleLinear, scaleTime} from 'd3-scale';
 import {axisTop} from 'd3-axis';
+import {extent} from 'd3-array';
 
 
 export default function() {
@@ -16,7 +17,7 @@ export default function() {
 		axis = undefined,
 		title = undefined,
 		// the extent is derived from the data, unless explicitly set via .extent([min, max])
-		extent = undefined,
+		_extent = undefined,
 		// TODO: use ordinal scale instead?
 		//x = d3.scaleLinear(),
 		x = undefined,
@@ -36,12 +37,10 @@ export default function() {
 		var increment = step + spacing;
 
 		// update the width
-		width = horizon.node().getBoundingClientRect().width;
-		//width = increment * data.length;
+		//width = horizon.node().getBoundingClientRect().width;
+		width = increment * data.length;
 
-		if (!canvas) {
-			canvas = horizon.append("canvas");
-		}
+		canvas = horizon.append("canvas");
 
 		canvas
 			.attr("width", width)
@@ -58,7 +57,7 @@ export default function() {
 		//context.translate(margin.left, margin.top);
 
 		// update the y scale, based on the data extents
-		y.domain( extent || d3.extent(data));
+		y.domain( _extent || extent(data));
 
 		//x = d3.scaleTime().domain[];
 
@@ -185,11 +184,11 @@ export default function() {
 
 	// get/set the extents of the Y axis. If not set the extents are derived from the data
 	my.extent = function(_) {
-	    if (!arguments.length) return extent;
-	    extent = _;
+	    if (!arguments.length) return _extent;
+	    _extent = _;
 
 	    // update the y scale's domain when the extent changes
-	    y.domain(extent);
+	    y.domain(_extent);
 
 	    return my;
 	};
