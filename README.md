@@ -8,8 +8,11 @@ The plugin is heavily inspired by [cubism.js](https://square.github.io/cubism/),
 
 It is a good option when you just want to plot your data as a horizon chart.
 
-*v.0.0.1*
-The plug-in supports positive bands.
+
+## Examples
+
+Check out the [examples page](kmandov.github.io/d3-horizon-chart/)
+
 
 ## Installing
 
@@ -25,12 +28,15 @@ Todo..
 ## TODO
 
 - [x] Publish initial version
+- [x] Add a simple usage example
+- [ ] Add more examples + code samples
+- [ ] Build the examples page with basscss + Add the badges
 - [ ] Add support for negative bands
 - [ ] Add API reference
-- [ ] Add a simple usage example
 - [ ] Show values on mouse over (Add support)
 - [ ] Add an example for responsive web pages
 - [ ] Add axis support
 - [ ] Add it to the d3 plug-ins list
 - [ ] Horizon Groups (i.e. cubism.js Context)
+- [ ] Support for node-canvas.
 - [ ] Handle canvas elements larger than 32767 px
