@@ -1,0 +1,19 @@
+{
+  "name": "d3-horizon-chart-gh",
+  "version": "1.0.0",
+  "description": "Examples for d3-horizon-chart",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/kmandov/d3-horizon-chart.git"
+  },
+  "author": "Kiril Mandov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kmandov/d3-horizon-chart/issues"
+  },
+  "homepage": "https://github.com/kmandov/d3-horizon-chart#readme"
+}
