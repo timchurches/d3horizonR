@@ -11,7 +11,7 @@ It is a good option when you just want to plot your data as a horizon chart.
 
 ## Examples
 
-Check out the [examples page](kmandov.github.io/d3-horizon-chart/)
+Check out the [examples page](http://kmandov.github.io/d3-horizon-chart/)
 
 
 ## Installing
