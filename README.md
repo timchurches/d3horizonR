@@ -1,5 +1,7 @@
 # d3-horizon-chart
 
+[![npm version](https://badge.fury.io/js/d3-horizon-chart.svg)](http://badge.fury.io/js/d3-horizon-chart)
+
 `d3-horizon-chart` is a d3 plugin that draws horizon charts using an Html5 Canvas.
 It provides an easy way to visualize large amounts of time series data.
 
