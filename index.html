@@ -1,173 +1,88 @@
-
 <!DOCTYPE html>
-<meta charset="utf-8">
-    <style>
+<html>
 
-      body {
-        font-family: "Helvetica Neue", Helvetica, sans-serif;
-        margin: 30px auto;
-        /*width: 1280px;*/
-        position: relative;
-      }
+<head>
+    <meta charset="utf-8">
+    <title>D3 Horizon Chart - Draw horizon charts with D3</title>
+    <meta title="description" content="">
+    <meta title="author" content="Kiril Mandov">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="dist/base.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,700|Merriweather:400,700">
+</head>
 
-      header {
-        padding: 6px 0;
-      }
-
-      .group {
-        margin-bottom: 1em;
-      }
-
-      .axis {
-        font: 10px sans-serif;
-        position: fixed;
-        pointer-events: none;
-        z-index: 2;
-      }
-
-      .axis text {
-        -webkit-transition: fill-opacity 250ms linear;
-      }
-
-      .axis path {
-        display: none;
-      }
-
-      .axis line {
-        stroke: #000;
-        shape-rendering: crispEdges;
-      }
-
-      .axis.top {
-        background-image: linear-gradient(top, #fff 0%, rgba(255,255,255,0) 100%);
-        background-image: -o-linear-gradient(top, #fff 0%, rgba(255,255,255,0) 100%);
-        background-image: -moz-linear-gradient(top, #fff 0%, rgba(255,255,255,0) 100%);
-        background-image: -webkit-linear-gradient(top, #fff 0%, rgba(255,255,255,0) 100%);
-        background-image: -ms-linear-gradient(top, #fff 0%, rgba(255,255,255,0) 100%);
-        top: 0px;
-        padding: 0 0 24px 0;
-      }
-
-      .axis.bottom {
-        background-image: linear-gradient(bottom, #fff 0%, rgba(255,255,255,0) 100%);
-        background-image: -o-linear-gradient(bottom, #fff 0%, rgba(255,255,255,0) 100%);
-        background-image: -moz-linear-gradient(bottom, #fff 0%, rgba(255,255,255,0) 100%);
-        background-image: -webkit-linear-gradient(bottom, #fff 0%, rgba(255,255,255,0) 100%);
-        background-image: -ms-linear-gradient(bottom, #fff 0%, rgba(255,255,255,0) 100%);
-        bottom: 0px;
-        padding: 24px 0 0 0;
-      }
-
-      .horizon  {
-        border-bottom: solid 1px #000;
-        /*overflow: hidden;*/
-        display: inline-flex;
-        position: relative;
-      }
-
-      .horizon  {
-        border-top: solid 1px #000;
-        border-bottom: solid 1px #000;
-      }
-
-      .horizon + .horizon {
-        border-top: none;
-      }
-
-      .horizon canvas {
-        display: block;
-      }
-
-      .horizon .title,
-      .horizon .value {
-        bottom: 0;
-        line-height: 30px;
-        margin: 0 6px;
-        position: absolute;
-        text-shadow: 0 1px 0 rgba(255,255,255,.5);
-        white-space: nowrap;
-      }
-
-      .horizon .title {
-        left: 0;
-      }
-
-      .horizon .value {
-        right: 0;
-      }
-
-      .line {
-        background: #000;
-        z-index: 2;
-      }
-
-    </style>
-    <script src="https://d3js.org/d3-selection.v0.6.min.js"></script>
-    <script src="https://d3js.org/d3-array.v0.7.min.js"></script>
-    <script src="https://d3js.org/d3-collection.v0.1.min.js"></script>
-    <script src="https://d3js.org/d3-color.v0.4.min.js"></script>
-    <script src="https://d3js.org/d3-format.v0.5.min.js"></script>
-    <script src="https://d3js.org/d3-interpolate.v0.7.min.js"></script>
-    <script src="https://d3js.org/d3-time.v0.2.min.js"></script>
-    <script src="https://d3js.org/d3-time-format.v0.3.min.js"></script>
-    <script src="https://d3js.org/d3-scale.v0.6.min.js"></script>
-    <script src="https://d3js.org/d3-axis.v0.3.min.js"></script>
-    <script src="d3-horizon-chart.js"></script>
+<body>
+    <header class="center px2 py4">
+        <svg viewBox="0 0 32 32" width="3em" height="3em" class="inline-block mt4 mb4 clickable js-skull" fill="currentColor">
+            <path d="
+      M0 6 H32 V24 L28 25 V28 H4 V25 L0 24z
+      M2 8 V22 L6 23 V26 H26 V23 L30 22 V8z
+      M3 17 A4 4 0 0 0 11 17 A4 4 0 0 0 3 17
+      M21 17 A4 4 0 0 0 29 17 A4 4 0 0 0 21 17
+    "></path>
+        </svg>
+        <div class="mb1">
+	        <h1 class="h2 inline-block m0">
+	      		D3 Horizon Charts
+	    	</h1>
+            <p class="h5 m1">Lightweight plug-in for drawing horizon charts with your favourite data vizualization library.</p>
+        </div>
+        <div class="h6 bold caps mb3">v0.0.3</div>
+	    <a href="https://github.com/jxnblk/skull/archive/1.0.0.zip" class="h6 caps btn btn-primary ml1 mr1">
+	    	Download
+	  	</a>
+    </header>
 
 
-    <body>
-      <h1 style="text-align: center;">Bar Charts</h1>
-      <div id="demo-bars"></div>
 
-      <h1 style="text-align: center; margin-top: 300px;">Horizon Graphs</h1>
-      <div id="demo-horizons"></div>
+	<section id="features" class="max-width-4 mx-auto px2 sm-px3 md-px4 py4">
+	  <h2 class="sans h4 caps m0">Horizon Charts</h2>
+	  <hr class="mt1">
+	  <section>
+	    <div class="sm-flex mxn2">
+	      <div class="sm-col-5 px2">
+	        <h3>Preserve Resolution</h3>
 
-    <script>
+	      </div>
+	      <div class="sm-col-7 px2">
+	        <p class="h3">Bacon ipsum dolor sit amet chuck prosciutto landjaeger ham hock filet mignon shoulder hamburger pig venison. Ham bacon corned beef, sausage kielbasa flank tongue pig drumstick capicola swine short loin ham hock kevin. Bacon t-bone hamburger turkey capicola rump short loin. Drumstick pork fatback pork chop doner pork belly prosciutto pastrami sausage. Ground round prosciutto shank pastrami corned beef venison tail. Turkey short loin tenderloin jerky porchetta pork loin.</p>
+	        <p>Landjaeger jerky ham sausage corned beef kevin drumstick ham hock shank meatball. Jowl brisket meatloaf capicola corned beef tri-tip drumstick strip steak t-bone flank. Biltong landjaeger pastrami cow tenderloin pork chop chuck turkey leberkas ribeye capicola hamburger jowl brisket. Bresaola boudin leberkas capicola salami, ribeye filet mignon tail kevin.</p>
+	      </div>
+	    </div>
+	  </section>
+	  <section>
+	    <h3 class="sans h4 caps">Buttons</h3>
+	    <div class="sm-flex items-center mxn2">
+	      <a href="#!" class="h1 btn btn-outline m2">h1 btn</a>
+	      <a href="#!" class="h2 btn m2">h2 btn</a>
+	      <a href="#!" class="h3 btn m2">h3 btn</a>
+	      <a href="#!" class="btn m2">btn</a>
+	    </div>
+	  </section>
+	</section>
 
-      // generate some random data:
-      var data = [];
-      for (var i = 0; i < 300; i++) {
-        data.push(Math.cos(i/10) * 2 + 2);
-      }
-
-
-      // horizon graphs preserve resolution:
-      d3_selection.select("#demo-horizons").selectAll(".horizon")
-        .data(d3_array.range(0, 4).map(random))
-        .enter()
-        .append('div')
-        .attr('class', 'horizon')
-        // for each data array, draw a horizon graph:
-        .each(function(d, i) {
-            d3_horizon_chart.horizonChart()
-              .step(5)
-              .spacing(1)
-              .height(200 / (i + 1))
-              .colors(["#bae4b3","#74c476","#31a354","#006d2c"].slice(0, i + 1))
-              .call(this, d, i);
-        });
-
-      d3_selection.select("#demo-bars").selectAll(".horizon")
-        .data(d3_array.range(0, 4).map(random))
-        .enter()
-        .append('div')
-        .attr('class', 'horizon')
-        .each(function(d, i) {
-            d3_horizon_chart.horizonChart()
-              .step(5)
-              .spacing(1)
-              .height(200 / (i + 1))
-              .colors(["#bae4b3"])
-              .call(this, d, i);
-        });
+	<section id="test" class="max-width-4 mx-auto px2 py4">
+		<hr class="mt1">
+	  <div class="h3 clearfix ">
+	    <div class="col col-4 p2">
+	      Lightweight, minimal styles ready to be customized
+	    </div>
+	    <div class="col col-4 p2">
+	      No compilation or installation required – just plain HTML and CSS
+	    </div>
+	    <div class="col col-4 p2">
+	      Powerful utilities to design in the browser faster
+	    </div>
+	  </div>
+	</section>
 
 
-      function random(index) {
-        return data;
-      }
 
-    </script>
 
-    </body>
+
+</body>
+
+</html>
+
 
 
