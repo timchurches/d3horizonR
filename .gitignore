@@ -1,7 +1,5 @@
 *.sublime-workspace
 .DS_Store
 build/
-!build/d3-horizon-chart.js
-!build/d3-horizon-chart.min.js
 node_modules
 npm-debug.log
