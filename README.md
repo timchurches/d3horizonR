@@ -30,13 +30,16 @@ Todo..
 
 - [x] Publish initial version
 - [x] Add a simple usage example
+- [x] Build the examples page with basscss
 - [ ] Add more examples + code samples
-- [ ] Build the examples page with basscss + Add the badges
+- [ ] Add support for negative bands
+- [ ] Add example: stocks / ref: cubism
+- [ ] Add example: using with browserify & webpack
+- [ ] Add API reference
+- [ ] Add some project badges
 - [ ] Add eslint + indent rules
 - [ ] Basic test coverage
-- [ ] Travis-ci build integration
-- [ ] Add support for negative bands
-- [ ] Add API reference
+- [ ] Travis-ci / Circle-ci build integration
 - [ ] Show values on mouse over (Add support)
 - [ ] Add an example for responsive web pages
 - [ ] Add axis support
