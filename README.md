@@ -32,6 +32,7 @@ Todo..
 - [x] Add a simple usage example
 - [x] Build the examples page with basscss
 - [ ] Add more examples + code samples
+- [ ] Review texts on the web page
 - [ ] Add support for negative bands
 - [ ] Add example: stocks / ref: cubism
 - [ ] Add example: using with browserify & webpack
