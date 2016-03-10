@@ -4,6 +4,7 @@
   "description": "Examples for d3-horizon-chart",
   "main": "index.js",
   "scripts": {
+    "build-css": "postcss -c src/postcss.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +16,27 @@
   "bugs": {
     "url": "https://github.com/kmandov/d3-horizon-chart/issues"
   },
-  "homepage": "https://github.com/kmandov/d3-horizon-chart#readme"
+  "homepage": "https://github.com/kmandov/d3-horizon-chart#readme",
+  "devDependencies": {
+    "autoprefixer": "^6.3.3",
+    "basscss-base-buttons": "^1.1.1",
+    "basscss-base-reset": "^2.0.3",
+    "basscss-base-typography": "^2.0.3",
+    "basscss-btn": "^1.1.1",
+    "basscss-color-base": "^2.0.2",
+    "basscss-color-borders": "^1.0.0",
+    "basscss-colors": "^2.2.0",
+    "basscss-defaults": "^2.1.3",
+    "basscss-utility-layout": "^2.0.4",
+    "basscss-utility-typography": "^2.1.0",
+    "basscss-utility-white-space": "0.0.7",
+    "postcss": "^5.0.19",
+    "postcss-calc": "^5.2.0",
+    "postcss-cli": "^2.5.1",
+    "postcss-color-function": "^2.0.0",
+    "postcss-custom-media": "^5.0.1",
+    "postcss-custom-properties": "^5.0.0",
+    "postcss-discard-comments": "^2.0.4",
+    "postcss-import": "^8.0.2"
+  }
 }
