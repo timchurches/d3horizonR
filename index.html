@@ -9,18 +9,24 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" href="css/theme.css">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,700|Merriweather:400,700">
+
+    <script src="https://d3js.org/d3-selection.v0.6.min.js"></script>
+    <script src="https://d3js.org/d3-array.v0.7.min.js"></script>
+    <script src="https://d3js.org/d3-collection.v0.1.min.js"></script>
+    <script src="https://d3js.org/d3-color.v0.4.min.js"></script>
+    <script src="https://d3js.org/d3-format.v0.5.min.js"></script>
+    <script src="https://d3js.org/d3-interpolate.v0.7.min.js"></script>
+    <script src="https://d3js.org/d3-time.v0.2.min.js"></script>
+    <script src="https://d3js.org/d3-time-format.v0.3.min.js"></script>
+    <script src="https://d3js.org/d3-scale.v0.6.min.js"></script>
+    <script src="https://d3js.org/d3-axis.v0.3.min.js"></script>
+    <script src="https://npmcdn.com/d3-horizon-chart/build/d3-horizon-chart.min.js"></script>
+
 </head>
 
 <body>
     <header class="center px2 py4">
-        <svg viewBox="0 0 32 32" width="3em" height="3em" class="inline-block mt4 mb4 clickable js-skull" fill="currentColor">
-            <path d="
-      M0 6 H32 V24 L28 25 V28 H4 V25 L0 24z
-      M2 8 V22 L6 23 V26 H26 V23 L30 22 V8z
-      M3 17 A4 4 0 0 0 11 17 A4 4 0 0 0 3 17
-      M21 17 A4 4 0 0 0 29 17 A4 4 0 0 0 21 17
-    "></path>
-        </svg>
+
         <div class="mb1">
 	        <h1 class="h2 inline-block m0">
 	      		D3 Horizon Charts
@@ -28,13 +34,169 @@
             <p class="h5 m1">Lightweight plug-in for drawing horizon charts with your favourite data vizualization library.</p>
         </div>
         <div class="h6 bold caps mb3">v0.0.3</div>
-	    <a href="https://github.com/jxnblk/skull/archive/1.0.0.zip" class="h6 caps btn btn-primary ml1 mr1">
-	    	Download
-	  	</a>
+		<iframe src="https://ghbtns.com/github-btn.html?user=kmandov&repo=d3-horizon-chart&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+
     </header>
 
 
+    <!--
+	<section id="features" class="max-width-4 mx-auto px2 py4">
 
+	  <div class="h3 clearfix center">
+	    <div class="col col-4 p2">
+	      AMD, CommonJS, and vanilla environments are supported.
+	    </div>
+	    <div class="col col-4 p2">
+	      Lightweight and fast.
+	    </div>
+	    <div class="col col-4 p2">
+		  Modular. Compatible with D3 v.4
+	    </div>
+	  </div>
+	</section>
+	-->
+
+	<section id="getting-started" class="max-width-4 mx-auto px2 sm-px3 md-px4 py4">
+	  <h2 class="sans h4 caps m0">Getting Started</h2>
+	  <hr class="mt1">
+	  <section>
+	    <div class="sm-flex mxn2">
+	      <div class="sm-col-12 px2">
+	        <p>
+	        d3-horizon-chart is available as a standalone library. Download <a href="https://npmcdn.com/d3-horizon-chart/build/d3-horizon-chart.min.js">the latest release</a> and reference it in a script tag:
+
+ 			<pre class="bg-gray p1">&lt;script src="d3-horizon-chart.min.js"&gt;&lt;/script&gt;</pre>
+
+	        </p>
+	        <p>
+		  	You can also use the CDN link:
+	        <pre class="bg-gray p1">https://npmcdn.com/d3-horizon-chart/build/d3-horizon-chart.min.js</pre>
+	        </p>
+
+	        <p>d3-horizon-chart depends on several small d3 modules. They have to be included beforehand:
+<pre class="bg-gray p1">&lt;script src=&quot;https://d3js.org/d3-selection.v0.6.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://d3js.org/d3-array.v0.7.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://d3js.org/d3-collection.v0.1.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://d3js.org/d3-color.v0.4.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://d3js.org/d3-format.v0.5.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://d3js.org/d3-interpolate.v0.7.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://d3js.org/d3-time.v0.2.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://d3js.org/d3-time-format.v0.3.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://d3js.org/d3-scale.v0.6.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://d3js.org/d3-axis.v0.3.min.js&quot;&gt;&lt;/script&gt;
+</pre>
+	        </p>
+
+	        <p class="pt2"> The Latest builds can be downloaded here:</p>
+
+	        <p>
+		    <a href="https://npmcdn.com/d3-horizon-chart/build/d3-horizon-chart.min.js" class="btn btn-primary ">
+		    	Minified Build
+		  	</a>
+		    <a href="https://npmcdn.com/d3-horizon-chart/build/d3-horizon-chart.js" class="btn btn-outline">
+		    	Uncompressed Build
+		  	</a>
+		  	</p>
+
+	      </div>
+	    </div>
+	  </section>
+
+	</section>
+
+
+	<section id="npm" class="max-width-4 mx-auto px2 sm-px3 md-px4 py4">
+	  <h2 class="sans h4 caps m0">NPM Package</h2>
+	  <hr class="mt1">
+
+		<p>
+			d3-horizon-chart is also available via npm. You can bundle it with browserify or webpack.
+			<pre class="bg-gray p1">npm install d3-horizon-chart</pre>
+		</p>
+		<p>
+		Then use it:
+			<pre class="bg-gray p1">var dhc = require('d3-horizon-chart')</pre>
+		</p>
+
+	</section>
+
+
+	<script>
+		// generate some random data:
+		var data = [];
+		for (var i = 0; i < 200; i++) {
+			data.push(Math.cos(i/10) * 2 + 2);
+		}
+
+		function random(index) {
+			return data;
+		}
+     </script>
+
+	<section id="example-bar-charts" class="max-width-4 mx-auto px2 sm-px3 md-px4 py4">
+	    <h2 class="sans h4 caps m0">Horizon Charts</h2>
+	    <hr class="mt1">
+
+		<p>
+			Horizon Charts are useful, because they preserve resolution.
+		</p>
+
+		<p>
+			Here is what happens when you shrink a typical bar chart -  as height decreases, there are less and less details:
+		</p>
+
+        <div id="demo-bars" class="overflow-hidden"></div>
+
+		<p>
+			Horizon Charts instead combine color and position. This allows to preserve resolution, even at small heights.
+		</p>
+
+		<div id="demo-horizons" class="overflow-hidden"></div>
+
+	    <script>
+	      d3_selection.select("#demo-bars").selectAll(".horizon")
+	        .data(d3_array.range(0, 4).map(random))
+	        .enter()
+	        .append('div')
+	        .attr('class', 'horizon')
+	        .each(function(d, i) {
+	            d3_horizon_chart.horizonChart()
+	              .step(5)
+	              .spacing(1)
+	              .height(200 / (i + 1))
+	              .colors(["#bae4b3"])
+	              .call(this, d, i);
+	        });
+
+	      // horizon graphs preserve resolution:
+	      d3_selection.select("#demo-horizons").selectAll(".horizon")
+	        .data(d3_array.range(0, 4).map(random))
+	        .enter()
+	        .append('div')
+	        .attr('class', 'horizon')
+	        // for each data array, draw a horizon graph:
+	        .each(function(d, i) {
+	            d3_horizon_chart.horizonChart()
+	              .step(5)
+	              .spacing(1)
+	              .height(200 / (i + 1))
+	              .colors(["#bae4b3","#74c476","#31a354","#006d2c"].slice(0, i + 1))
+	              .call(this, d, i);
+	        });
+
+	    </script>
+	</section>
+
+
+	<footer class="py2 mt4 max-width-4 mx-auto ">
+	    <hr class="mt1">
+        <div class="px1 h6 bold caps center">
+        	Made by <a class="underline" href="//morphocode.com">Kiril Mandov</a> at <a class="underline" href="//morphocode.com">Morphocode</a>
+        </div>
+    </footer>
+
+
+	<!--
 	<section id="features" class="max-width-4 mx-auto px2 sm-px3 md-px4 py4">
 	  <h2 class="sans h4 caps m0">Horizon Charts</h2>
 	  <hr class="mt1">
@@ -46,7 +208,9 @@
 	      </div>
 	      <div class="sm-col-7 px2">
 	        <p class="h3">Bacon ipsum dolor sit amet chuck prosciutto landjaeger ham hock filet mignon shoulder hamburger pig venison. Ham bacon corned beef, sausage kielbasa flank tongue pig drumstick capicola swine short loin ham hock kevin. Bacon t-bone hamburger turkey capicola rump short loin. Drumstick pork fatback pork chop doner pork belly prosciutto pastrami sausage. Ground round prosciutto shank pastrami corned beef venison tail. Turkey short loin tenderloin jerky porchetta pork loin.</p>
-	        <p>Landjaeger jerky ham sausage corned beef kevin drumstick ham hock shank meatball. Jowl brisket meatloaf capicola corned beef tri-tip drumstick strip steak t-bone flank. Biltong landjaeger pastrami cow tenderloin pork chop chuck turkey leberkas ribeye capicola hamburger jowl brisket. Bresaola boudin leberkas capicola salami, ribeye filet mignon tail kevin.</p>
+	        <p>Landjaeger jerky ham sausage corned beef kevin drumstick ham hock shank meatball. Jowl brisket meatloaf capicola corned beef tri-tip drumstick strip steak t-bone flank. Biltong landjaeger pastrami cow tenderloin pork chop chuck turkey leberkas ribeye capicola hamburger jowl brisket. Bresaola boudin leberkas capicola salami, ribeye filet mignon tail kevin.
+			<iframe src="https://ghbtns.com/github-btn.html?user=kmandov&repo=d3-horizon-chart&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+	        </p>
 	      </div>
 	    </div>
 	  </section>
@@ -60,23 +224,7 @@
 	    </div>
 	  </section>
 	</section>
-
-	<section id="test" class="max-width-4 mx-auto px2 py4">
-		<hr class="mt1">
-	  <div class="h3 clearfix ">
-	    <div class="col col-4 p2">
-	      Lightweight, minimal styles ready to be customized
-	    </div>
-	    <div class="col col-4 p2">
-	      No compilation or installation required – just plain HTML and CSS
-	    </div>
-	    <div class="col col-4 p2">
-	      Powerful utilities to design in the browser faster
-	    </div>
-	  </div>
-	</section>
-
-
+	-->
 
 
 
