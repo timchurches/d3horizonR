@@ -1,9 +1,12 @@
 {
   "name": "d3-horizon-chart",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "D3 Plugin that draws horizon charts using canvas.",
   "keywords": [
-    "d3", "horizon chart", "time series", "data visualization"
+    "d3",
+    "horizon chart",
+    "time series",
+    "data visualization"
   ],
   "license": "MIT",
   "main": "build/d3-horizon-chart.js",
