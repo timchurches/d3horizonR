@@ -20,7 +20,49 @@
     <script src="https://d3js.org/d3-time-format.v0.3.min.js"></script>
     <script src="https://d3js.org/d3-scale.v0.6.min.js"></script>
     <script src="https://d3js.org/d3-axis.v0.3.min.js"></script>
-    <script src="https://npmcdn.com/d3-horizon-chart/build/d3-horizon-chart.min.js"></script>
+    <script src="https://d3js.org/d3-dispatch.v0.4.min.js"></script>
+    <script src="https://d3js.org/d3-dsv.v0.3.min.js"></script>
+    <script src="https://d3js.org/d3-request.v0.4.min.js"></script>
+    <script src="https://d3js.org/d3-queue.v2.min.js"></script>
+    <!--<script src="https://npmcdn.com/d3-horizon-chart/build/d3-horizon-chart.min.js"></script>-->
+    <script src="http://localhost:9000/build/d3-horizon-chart.js"></script>
+
+
+<style>
+	.horizon {
+	  border-top: solid 1px #000;
+	  border-bottom: solid 1px #000;
+	  overflow: hidden;
+	  position: relative;
+	}
+
+	.horizon + .horizon {
+	  border-top: none;
+	}
+
+	.horizon canvas {
+	  display: block;
+	  image-rendering: pixelated;
+	}
+
+	.horizon .title,
+	.horizon .value {
+	  bottom: 0;
+	  line-height: 30px;
+	  margin: 0 6px;
+	  position: absolute;
+	  text-shadow: 0 1px 0 rgba(255,255,255,.5);
+	  white-space: nowrap;
+	}
+
+	.horizon .title {
+	  left: 0;
+	}
+
+	.horizon .value {
+	  right: 0;
+	}
+</style>
 
 </head>
 
@@ -35,32 +77,37 @@
 	        <h1 class="inline-block m1">
 	      		D3 Horizon Charts
 	    	</h1>
-            <p class="h4 m1 pb4">Lightweight plug-in for drawing horizon charts in the browser and node.</p>
+            <p class="h4 m1 p1">D3 plug-in for drawing horizon charts in the browser and node.</p>
         </div>
-		<iframe src="https://ghbtns.com/github-btn.html?user=kmandov&repo=d3-horizon-chart&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
 
     </header>
 
 
-    <!--
-	<section id="features" class="max-width-4 mx-auto px2 py4">
 
-	  <div class="h3 clearfix center">
+	<section id="features" class="max-width-4 mx-auto px2 pb4">
+
+	  <div class="clearfix center">
 	    <div class="col col-4 p2">
-	      AMD, CommonJS, and vanilla environments are supported.
+	      	<h3>Fast</h3>
+	      	<p>D3-horizon-chart uses Canvas to draw the horizon charts. This provides great performance even with large amounts of data.</p>
 	    </div>
 	    <div class="col col-4 p2">
-	      Lightweight and fast.
+	    	<h3>Lightweight</h3>
+	    	<p>
+				The plugin follows the <a href="https://bost.ocks.org/mike/d3-plugin/">latest plugin guidelines</a> using D3’s new 4.0 module pattern.
+	      		AMD, CommonJS, and vanilla environments are supported.
+	      	</p>
 	    </div>
 	    <div class="col col-4 p2">
-		  Modular. Compatible with D3 v.4
+		  	<h3>Simple</h3>
+			<p>The plugin is heavily inspired by <a href="https://square.github.io/cubism/">cubism.js</a>, but doesn't make assumptions about real-time metrics and back-end servers.</p>
 	    </div>
 	  </div>
 	</section>
-	-->
 
-	<section id="getting-started" class="max-width-4 mx-auto px2 sm-px3 md-px4 py4">
-	  <h2 class="sans h4 caps m0">Getting Started</h2>
+
+	<section id="download" class="max-width-4 mx-auto px2 sm-px3 md-px4 py4">
+	  <h2 class="sans h4 caps m0">Download</h2>
 	  <hr class="mt1">
 	  <section>
 	    <div class="sm-flex mxn2">
@@ -125,10 +172,12 @@
 
 
 	<script>
+
 		// generate some random data:
 		var data = [];
-		for (var i = 0; i < 200; i++) {
-			data.push(Math.cos(i/10) * 2 + 2);
+		for (var i = 0, variance = 0; i < 1000; i++) {
+			variance += (Math.random() - 0.5) / 10;
+			data.push(Math.cos(i/100) + variance);
 		}
 
 		function random(index) {
@@ -157,44 +206,118 @@
 		<div id="demo-horizons" class="overflow-hidden"></div>
 
 	    <script>
-	      d3_selection.select("#demo-bars").selectAll(".horizon")
-	        .data(d3_array.range(0, 4).map(random))
-	        .enter()
-	        .append('div')
-	        .attr('class', 'horizon')
-	        .each(function(d, i) {
-	            d3_horizon_chart.horizonChart()
-	              .step(5)
-	              .spacing(1)
-	              .height(200 / (i + 1))
-	              .colors(["#bae4b3"])
-	              .call(this, d, i);
-	        });
 
-	      // horizon graphs preserve resolution:
-	      d3_selection.select("#demo-horizons").selectAll(".horizon")
-	        .data(d3_array.range(0, 4).map(random))
-	        .enter()
-	        .append('div')
-	        .attr('class', 'horizon')
-	        // for each data array, draw a horizon graph:
-	        .each(function(d, i) {
-	            d3_horizon_chart.horizonChart()
-	              .step(5)
-	              .spacing(1)
-	              .height(200 / (i + 1))
-	              .colors(["#bae4b3","#74c476","#31a354","#006d2c"].slice(0, i + 1))
-	              .call(this, d, i);
-	        });
+		d3_selection.select("#demo-bars").selectAll(".horizon")
+			.data(d3_array.range(0, 3).map(random))
+			.enter()
+			.append('div')
+			.attr('class', 'horizon')
+			.each(function(d, i) {
+			    d3_horizon_chart.horizonChart()
+			      .height(200 / (i + 1))
+			      .colors(["#abd9e9", "#fee090"])
+			      .call(this, d, i);
+			});
+
+		// horizon graphs preserve resolution:
+		d3_selection.select("#demo-horizons").selectAll(".horizon")
+			.data(d3_array.range(0, 3).map(random))
+			.enter()
+			.append('div')
+			.attr('class', 'horizon')
+			// for each data array, draw a horizon graph:
+			.each(function(d, i) {
+				var j = 3-i;
+			    d3_horizon_chart.horizonChart()
+			      .height(200 / (i + 1))
+			      .colors(["#313695", "#4575b4", "#74add1", "#abd9e9", "#fee090", "#fdae61", "#f46d43", "#d73027"].slice(j, j==0? undefined: -j))
+			      .call(this, d, i);
+			});
 
 	    </script>
+	</section>
+
+
+
+	<section id="example-stocks" class="max-width-4 mx-auto px2 sm-px3 md-px4 py4">
+	    <h2 class="sans h4 caps m0">Show me the money</h2>
+	    <hr class="mt1">
+
+		<p>
+			Horizon Charts are often used to display stock data.
+		</p>
+
+        <div id="demo-stocks" class="overflow-hidden"></div>
+
+	    <script>
+
+		  function loadStockData(stock, callback) {
+		    d3_request.csv('https://bost.ocks.org/mike/cubism/intro/stocks/' + stock + '.csv', function(rows) {
+		        rows = rows.map(function(d) {
+		          return [d3_time_format.timeParse(d.Date), +d.Open];
+		        }).filter(function(d) {
+		          return d[1];
+		        }).reverse();
+
+		        var date = rows[0][0],
+		            compare = rows[400][1],
+		            value = rows[0][1],
+		            values = [];
+
+		        rows.forEach(function(d, i ) {
+		          values.push(value = (d[1] - compare) / compare);
+		        });
+
+		        callback(null, {
+		          'stock': stock,
+		          'values': values
+		        });
+		      });
+		  }
+
+		  var q = d3_queue.queue();
+
+		  ['AAPL', 'BIDU', 'SINA', 'GOOG', 'MSFT', 'YHOO', 'ADBE'].forEach(function(stock) {
+		      q.defer(loadStockData, stock);
+		  });
+
+		  q.awaitAll(function(error, stocks) {
+		    if (error) throw error;
+
+		    d3_selection.select("#demo-stocks").selectAll(".horizon")
+		      .data(stocks)
+		      .enter()
+		      .append('div')
+		      .attr('class', 'horizon')
+		      .each(function(d, i) {
+		          d3_horizon_chart.horizonChart()
+		            .title(d.stock)
+		            .call(this, d.values, i);
+		      });
+		  });
+
+
+	    </script>
+	</section>
+
+
+	<section id="npm" class="max-width-4 mx-auto px2 sm-px3 md-px4 py4">
+	  <h2 class="sans h4 caps m0">Open-Source</h2>
+	  <hr class="mt1">
+
+		<p>
+			The plugin was developed by <a href="//morphocode.com">Kiril Mandov</a> of <a href="//morphocode.com">Morphocode</a>. The source is <a href="http://kmandov.github.io/d3-horizon-chart/">available on Github</a> under the MIT License.
+		</p>
+
+		<iframe src="https://ghbtns.com/github-btn.html?user=kmandov&repo=d3-horizon-chart&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+
 	</section>
 
 
 	<footer class="py2 mt4 max-width-4 mx-auto ">
 	    <hr class="mt1">
         <div class="px1 h6 bold caps center">
-        	Made by <a class="underline" href="//morphocode.com">Kiril Mandov</a> at <a class="underline" href="//morphocode.com">Morphocode</a>
+        	Made by <a class="underline" href="//morphocode.com">Kiril Mandov</a> of <a class="underline" href="//morphocode.com">Morphocode</a>
         </div>
     </footer>
 
