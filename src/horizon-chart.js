@@ -7,12 +7,14 @@ import {extent} from 'd3-array';
 export default function() {
 
 	// default settings:
-	var colors = ['#3182bd', '#08519c'],
+	//var colors = ['#3182bd', '#08519c'],
+	//var colors = ['#08519c','#3182bd','#6baed6','#bdd7e7','#bae4b3','#74c476','#31a354','#006d2c'],
+	var colors = ['#bae4b3','#74c476','#31a354','#006d2c'],
 		bands = colors.length,
 		width = 1000,
-		height = 50,
+		height = 30,
 		offsetX = 0,
-		step = 2,
+		step = 1,
 		spacing = 0,
 		axis = undefined,
 		title = undefined,
@@ -22,7 +24,7 @@ export default function() {
 		//x = d3.scaleLinear(),
 		x = undefined,
 		y = scaleLinear()
-			.range([height, 0]),
+			.range([0, height]),
 		// the draw function that redraws the chart:
 		_draw = undefined,
 		canvas = undefined;
@@ -40,20 +42,21 @@ export default function() {
 		//width = horizon.node().getBoundingClientRect().width;
 		width = increment * data.length;
 
-		canvas = horizon.append("canvas");
+		canvas = horizon.append('canvas');
 
 		canvas
-			.attr("width", width)
-			.attr("height", height);
+			.attr('width', width)
+			.attr('height', height);
 
-	    horizon.append("span")
-	        .attr("class", "title")
+	    horizon.append('span')
+	        .attr('class', 'title')
 	        .text(title);
 
-	    horizon.append("span")
-	        .attr("class", "value");
+	    horizon.append('span')
+	        .attr('class', 'value');
 
-		var context = canvas.node().getContext("2d");
+		var context = canvas.node().getContext('2d');
+		context.imageSmoothingEnabled = false;
 		//context.translate(margin.left, margin.top);
 
 		// update the y scale, based on the data extents
@@ -63,14 +66,13 @@ export default function() {
 
 		axis = axisTop(x).ticks(5);
 
-
+		/*
 		function createOffscreenCanvas(width,height){
 		    var canvas = document.createElement('canvas');
 		    canvas.width = width;
 		    canvas.height = height;
 		    return canvas;
 		}
-
 
 		var offscreenCanvas = createOffscreenCanvas(increment * data.length, height);
 		var offscreenContext = offscreenCanvas.getContext('2d');
@@ -97,8 +99,9 @@ export default function() {
             //context.translate(offsetX, 0);
             //context.drawImage(offscreenCanvas, offsetX, 0);
 	    };
+	    */
 
-		/*
+
 		_draw = function() {
 			context.clearRect(0, 0, width, height);
 
@@ -124,9 +127,9 @@ export default function() {
 		        }
 		    }
 		};
-		*/
 
 		_draw();
+
 		/*
 		setInterval(function() {
 			offsetX -= 1;
