@@ -1,32 +1,29 @@
 import {select} from 'd3-selection';
 import {scaleLinear, scaleTime} from 'd3-scale';
 import {axisTop} from 'd3-axis';
-import {extent} from 'd3-array';
+import {extent as d3_extent} from 'd3-array';
 
 
 export default function() {
 
 	// default settings:
-	//var colors = ['#3182bd', '#08519c'],
 	//var colors = ['#08519c','#3182bd','#6baed6','#bdd7e7','#bae4b3','#74c476','#31a354','#006d2c'],
-	var colors = ['#bae4b3','#74c476','#31a354','#006d2c'],
-		bands = colors.length,
-		width = 1000,
+	//var colors = ['#4575b4', '#74add1', '#abd9e9', '#e0f3f8', '#fee090', '#fdae61', '#f46d43', '#d73027'],
+	//var colors = ["#5e4fa2", "#3288bd", "#66c2a5", "#abdda4", "#e6f598", "#fee08b", "#fdae61", "#f46d43", "#d53e4f", "#9e0142"],
+	var colors = ["#313695", "#4575b4", "#74add1", "#abd9e9", "#fee090", "#fdae61", "#f46d43", "#d73027"],
+		bands = colors.length >> 1, // number of bands in each direction (positive / negative)
+		width = 1000, // width in pixels
 		height = 30,
 		offsetX = 0,
 		step = 1,
 		spacing = 0,
+		mode = 'offset',
 		axis = null,
 		title = null,
-		// the extent is derived from the data, unless explicitly set via .extent([min, max])
-		_extent = null,
-		// TODO: use ordinal scale instead?
-		//x = d3.scaleLinear(),
+		extent = null, // the extent is derived from the data, unless explicitly set via .extent([min, max])
+		//x = d3.scaleLinear(), // TODO: use ordinal scale instead?
 		x = null,
-		y = scaleLinear()
-			.range([0, height]),
-		// the draw function that redraws the chart:
-		_draw = null,
+		y = scaleLinear().range([0, height]),
 		canvas = null;
 
 	/*
@@ -56,17 +53,85 @@ export default function() {
 	        .attr('class', 'value');
 
 		var context = canvas.node().getContext('2d');
-		context.imageSmoothingEnabled = false;
+		//context.imageSmoothingEnabled = false;
 		//context.translate(margin.left, margin.top);
 
 		// update the y scale, based on the data extents
-		y.domain( _extent || extent(data));
+		var _extent = extent || d3_extent(data);
+
+		var max = Math.max(-_extent[0], _extent[1]);
+		y.domain([0, max]);
+
 
 		//x = d3.scaleTime().domain[];
 
 		axis = axisTop(x).ticks(5);
 
+
+	    // Draw ----------------------------------------------------------------------------
+
+		context.clearRect(0, 0, width, height);
+		//context.translate(0.5, 0.5);
+
+		// the data frame currently being shown:
+		var increment = step+spacing,
+			startIndex = ~~ Math.max(0, -(offsetX / increment)),
+			endIndex = ~~ Math.min(data.length, startIndex + width / increment);
+
+		// skip drawing if there's no data to be drawn
+		if (startIndex > data.length) return;
+
+
+		// we are drawing positive & negative bands separately to avoid mutating canvas state
+		// http://www.html5rocks.com/en/tutorials/canvas/performance/
+
+		var negative = false;
+	    // draw positive bands
+	    for (var b = 0; b < bands; b++) {
+	        context.fillStyle = colors[bands + b];
+
+	        // Adjust the range based on the current band index.
+	        var bExtents = (b + 1 - bands) * height;
+	        y.range([bands * height + bExtents, bExtents]);
+
+	        // only the current data frame is being drawn i.e. what's visible:
+	        for (var i = startIndex, value; i < endIndex; i++) {
+	        	value = data[i];
+				if (value <= 0) { negative = true; continue; }
+            	if (value === undefined) continue;
+	            context.fillRect(offsetX + i * increment, y(value), step, y(0) - y(value));
+	        }
+	    }
+
+	    // draw negative bands
+	    if (negative) {
+
+			// mirror the negative bands, by flipping the canvas
+			if (mode === 'offset') {
+				context.translate(0, height);
+				context.scale(1, -1);
+			}
+
+		    for (var b = 0; b < bands; b++) {
+		        context.fillStyle = colors[bands - b - 1];
+
+		        // Adjust the range based on the current band index.
+		        var bExtents = (b + 1 - bands) * height;
+		        y.range([bands * height + bExtents, bExtents]);
+
+		        // only the current data frame is being drawn i.e. what's visible:
+		        for (var i = startIndex, value; i < endIndex; i++) {
+					value = data[i];
+					if (value >= 0) continue;
+					context.fillRect(offsetX + i * increment, y(-value), step, y(0) - y(-value));
+		        }
+		    }
+		}
+
+
 		/*
+	    // Offscreen Draw -----------------------------------------------------------------------
+
 		function createOffscreenCanvas(width,height){
 		    var canvas = document.createElement('canvas');
 		    canvas.width = width;
@@ -102,40 +167,6 @@ export default function() {
 	    */
 
 
-		_draw = function() {
-			context.clearRect(0, 0, width, height);
-
-			// the data frame currently being shown:
-			var increment = step+spacing,
-				startIndex = ~~ Math.max(0, -(offsetX / increment)),
-				endIndex = ~~ Math.min(data.length, startIndex + width / increment);
-
-			// skip drawing if there's no data to be drawn
-			if (startIndex > data.length) return;
-
-		    // draw each band:
-		    for (var b = 0; b < bands; b++) {
-		        context.fillStyle = colors[b];
-
-		        // Adjust the range based on the current band index.
-		        var y0 = (b + 1 - bands) * height;
-		        y.range([bands * height + y0, y0]);
-
-		        // only the current data frame is being drawn i.e. what's visible:
-		        for (var i = startIndex; i < endIndex; i++) {
-		          context.fillRect(offsetX + i * increment, y(data[i]), step, y(0) - y(data[i]));
-		        }
-		    }
-		};
-
-		_draw();
-
-		/*
-		setInterval(function() {
-			offsetX -= 1;
-			_draw();
-		}, 1000);
-		*/
 	}
 
 	my.axis = function(_) {
@@ -152,7 +183,7 @@ export default function() {
 	    colors = _;
 
 	    // update the number of bands
-	    bands = colors.length;
+	    bands = colors.length >> 1;
 
 	    return my;
 	};
@@ -169,49 +200,33 @@ export default function() {
 
 	// get/set the spacing between the bars of the graph
 	my.spacing = function(_) {
-	    if (!arguments.length) return spacing;
-	    spacing = _;
-
-	    // update the x scale, when the step changes
-	    //x.range([0, step + spacing]);
-	    return my;
+		return arguments.length ? (spacing = _, my) : spacing;
 	};
 
 	// get/set the title of the horizon
 	my.title = function(_) {
-		if (!arguments.length) return title;
+		return arguments.length ? (title = _, my) : title;
+	};
 
-		title = _;
-		return my;
+	// mirror or offset
+	my.mode = function(_) {
+		return arguments.length ? (mode = _, my) : mode;
 	};
 
 	// get/set the extents of the Y axis. If not set the extents are derived from the data
 	my.extent = function(_) {
-	    if (!arguments.length) return _extent;
-	    _extent = _;
-
-	    // update the y scale's domain when the extent changes
-	    y.domain(_extent);
-
-	    return my;
+		return arguments.length ? (extent = _, my) : extent;
 	};
 
 	my.offsetX = function(_) {
-	    if (!arguments.length) return offsetX;
-	    offsetX = _;
-
-	    if (_draw) {
-	    	_draw();
-	    }
-
-	    return my;
+		return arguments.length ? (offsetX = _, my) : offsetX;
 	};
 
+	// the data frame currently being shown:
 	my.indexExtent = function() {
-		// the data frame currently being shown:
-		var increment = step+spacing,
-			startIndex =  (-offsetX / increment),
-			endIndex =  (startIndex + width / increment);
+		var increment = step + spacing,
+			startIndex = -offsetX / increment,
+			endIndex = startIndex + width / increment;
 
 		return [startIndex, endIndex];
 	};
