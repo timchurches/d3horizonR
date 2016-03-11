@@ -16,18 +16,18 @@ export default function() {
 		offsetX = 0,
 		step = 1,
 		spacing = 0,
-		axis = undefined,
-		title = undefined,
+		axis = null,
+		title = null,
 		// the extent is derived from the data, unless explicitly set via .extent([min, max])
-		_extent = undefined,
+		_extent = null,
 		// TODO: use ordinal scale instead?
 		//x = d3.scaleLinear(),
-		x = undefined,
+		x = null,
 		y = scaleLinear()
 			.range([0, height]),
 		// the draw function that redraws the chart:
-		_draw = undefined,
-		canvas = undefined;
+		_draw = null,
+		canvas = null;
 
 	/*
 	 * Appends a canvas element to the current element
