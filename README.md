@@ -21,30 +21,43 @@ If you use NPM, `npm install d3-horizon-chart`. Otherwise, download the [latest 
 
 ## API Reference
 
-Todo..
+Soon...
 
 <a href="#horizon-chart" name="horizon-chart">#</a> <b>horizon-chart</b>()
 
 
 ## TODO
 
+### Stable
 - [x] Publish initial version
 - [x] Add a simple usage example
 - [x] Build the examples page with basscss
-- [ ] Add more examples + code samples
-- [ ] Review texts on the web page
-- [ ] Add support for negative bands
-- [ ] Add example: stocks / ref: cubism
-- [ ] Add example: using with browserify & webpack
+- [x] Add support for negative bands
+- [x] Add example: stocks / ref: cubism
+- [ ] Add support for values on mouse hover
+- [ ] Example: Update the stock data & review the date parsing. Make it a gist.
+- [ ] Example: time series: data + axis support
+- [ ] Example: using browserify & webpack
+- [ ] Example: pedestrian movement
+- [ ] Example: Show values on mouse over
+- [ ] Add +5 examples + gist code
+- [ ] Add Screenshots to the Readme
 - [ ] Add API reference
-- [ ] Add some project badges
+- [ ] Add axis support
+- [ ] Review texts on the web page
+- [ ] *Maybe* Change icons. Fast -> Horse / Race car. Simple -> Ameba
+
+### Next
+- [ ] Travis-ci / Circle-ci build integration
+- [ ] Add codecov badge
+- [ ] Add circleci badge
 - [ ] Add eslint + indent rules
 - [ ] Basic test coverage
-- [ ] Travis-ci / Circle-ci build integration
-- [ ] Show values on mouse over (Add support)
 - [ ] Add an example for responsive web pages
-- [ ] Add axis support
 - [ ] Add it to the d3 plug-ins list
 - [ ] Horizon Groups (i.e. cubism.js Context)
 - [ ] Support for node-canvas.
 - [ ] Handle canvas elements larger than 32767 px
+
+
+
