@@ -29,23 +29,23 @@ export default function () {
     // and draws a horizon graph based on data & settings
     function horizonChart(data) {
 
-        var horizon = select(this);
+        var selection = select(this);
         var dIncrement = step + spacing;
 
         // update the width
         //width = horizon.node().getBoundingClientRect().width;
         width = dIncrement * data.length;
-        canvas = horizon.append('canvas');
+        canvas = selection.append('canvas');
 
         canvas
             .attr('width', width)
             .attr('height', height);
 
-        horizon.append('span')
+        selection.append('span')
             .attr('class', 'title')
             .text(title);
 
-        horizon.append('span')
+        selection.append('span')
             .attr('class', 'value');
 
         var context = canvas.node().getContext('2d');
