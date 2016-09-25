@@ -3,13 +3,12 @@
 
 <head>
     <meta charset="utf-8">
-    <title>D3 Horizon Chart - Draw horizon charts with D3</title>
-    <meta title="description" content="">
+    <title>D3 Horizon Chart - Drawing horizon charts in the browser and node</title>
+    <meta title="description" content="D3 plugin to draw horizon charts">
     <meta title="author" content="Kiril Mandov">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" href="css/theme.css">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,700|Merriweather:400,700">
-
 
     <script src="https://d3js.org/d3.v4.js"></script>
     <script src="https://npmcdn.com/d3-horizon-chart/build/d3-horizon-chart.min.js"></script>
@@ -28,70 +27,67 @@
         }
     </script>
 
+    <style>
+        .horizon {
+            border-top: solid 1px #000;
+            border-bottom: solid 1px #000;
+            overflow: hidden;
+            position: relative;
+        }
 
-<style>
-  .horizon {
-    border-top: solid 1px #000;
-    border-bottom: solid 1px #000;
-    overflow: hidden;
-    position: relative;
-  }
+        .horizon + .horizon {
+            border-top: none;
+        }
 
-  .horizon + .horizon {
-    border-top: none;
-  }
+        .horizon canvas {
+            display: block;
+            image-rendering: pixelated;
+        }
 
-  .horizon canvas {
-    display: block;
-    image-rendering: pixelated;
-  }
+        .horizon .title,
+        .horizon .value {
+            bottom: 0;
+            line-height: 30px;
+            margin: 0 6px;
+            position: absolute;
+            text-shadow: 0 1px 0 rgba(255,255,255,.5);
+            white-space: nowrap;
+        }
 
-  .horizon .title,
-  .horizon .value {
-    bottom: 0;
-    line-height: 30px;
-    margin: 0 6px;
-    position: absolute;
-    text-shadow: 0 1px 0 rgba(255,255,255,.5);
-    white-space: nowrap;
-  }
+        .horizon .title {
+            left: 0;
+        }
 
-  .horizon .title {
-    left: 0;
-  }
+        .horizon .value {
+            right: 0;
+        }
 
-  .horizon .value {
-    right: 0;
-  }
+        .html .string,
+        .javascript .string,
+        .javascript .regexp {
+            color: #756bb1;
+        }
+        .html .tag,
+        .css .tag,
+        .javascript .keyword {
+            color: #3182bd;
+        }
+        .comment {
+            color: #636363;
+        }
 
+        .html .doctype,
+        .javascript .number {
+            color: #31a354;
+        }
 
-
-    .html .string,
-    .javascript .string,
-    .javascript .regexp {
-        color: #756bb1;
-    }
-    .html .tag,
-    .css .tag,
-    .javascript .keyword {
-        color: #3182bd;
-    }
-    .comment {
-        color: #636363;
-    }
-
-    .html .doctype,
-    .javascript .number {
-        color: #31a354;
-    }
-
-    .html .attr,
-    .css .attr,
-    .javascript .class,
-    .javascript .special {
-        color: #e6550d;
-    }
-</style>
+        .html .attr,
+        .css .attr,
+        .javascript .class,
+        .javascript .special {
+            color: #e6550d;
+        }
+    </style>
 
 </head>
 
@@ -114,13 +110,13 @@
 
     <section id="features" class="max-width-4 mx-auto px2 pb4">
         <div class="clearfix center">
-            <div class="col col-4 p2">
+            <div class="col sm-col-4 p2">
                 <img src="img/fast.png" alt="Fast">
                 <h3>Fast</h3>
                 <p>D3-horizon-chart uses Canvas to draw the horizon charts. This provides great performance even with large amounts
                     of data.</p>
             </div>
-            <div class="col col-4 p2">
+            <div class="col sm-col-4 p2">
                 <img src="img/lightweight.png" alt="Lightweight">
                 <h3>Lightweight</h3>
                 <p>
@@ -128,7 +124,7 @@
                     D3’s new 4.0 module pattern. AMD, CommonJS, and vanilla environments are supported.
                 </p>
             </div>
-            <div class="col col-4 p2">
+            <div class="col sm-col-4 p2">
                 <img src="img/simple.png" alt="Keep it simple, stupid">
                 <h3>Simple</h3>
                 <p>The plugin is heavily inspired by <a href="https://square.github.io/cubism/">cubism.js</a>, but doesn't make
@@ -146,7 +142,7 @@
         <div class="sm-flex mxn2">
             <div class="sm-col-12 px2">
             <p>
-                First, include d3 and d3-horizon-chart on the webpage:
+                First, include d3 and d3-horizon-chart plugin on the web page:
                 <pre class="bg-gray p1"><code class="html">&lt;script src=&quot;https://d3js.org/d3.v4.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/d3-horizon-chart&quot;&gt;&lt;/script&gt;</code></pre>
             </p>
@@ -188,7 +184,7 @@ var horizons = d3.select('body').selectAll('.horizon')
             </p>
 
           <p class="pt2">
-          d3-horizon-chart is available as a standalone library. The Latest builds can be downloaded here:</p>
+            d3-horizon-chart is available as a standalone library. The Latest builds can be downloaded here:</p>
           <p>
         <a href="https://npmcdn.com/d3-horizon-chart/build/d3-horizon-chart.min.js" class="btn btn-primary ">
           Minified Build
@@ -202,7 +198,6 @@ var horizons = d3.select('body').selectAll('.horizon')
       </div>
 
   </section>
-
 
   <section id="npm" class="max-width-4 mx-auto px2 sm-px3 md-px4 py4">
     <h2 class="sans h4 caps m0">NPM Package</h2>
