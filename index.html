@@ -142,13 +142,13 @@
         <div class="sm-flex mxn2">
             <div class="sm-col-12 px2">
             <p>
-                First, include d3 and d3-horizon-chart plugin on the web page:
+                First, include <em>d3</em> and <em>d3-horizon-chart</em> on the web page:
                 <pre class="bg-gray p1"><code class="html">&lt;script src=&quot;https://d3js.org/d3.v4.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/d3-horizon-chart&quot;&gt;&lt;/script&gt;</code></pre>
             </p>
 
             <p class="pt2">
-                To draw a horizon chart use the <em>d3.horizonChart()</em> generator.
+                To draw a horizon chart use the <em>d3.horizonChart()</em> generator:
                 <pre class="bg-gray p1"><code>var horizonChart = d3.horizonChart()
     .height(100)
     .colors(['#313695', '#4575b4', '#74add1', '#abd9e9', '#fee090', '#fdae61', '#f46d43', '#d73027']);
@@ -164,22 +164,20 @@ var horizons = d3.select('body').selectAll('.horizon')
                 In this case the <em>series</em> variable is an array of random-like data. Here is how the horizon chart looks like:
             </p>
 
-            <p>
-                <div id="horizon-basic"></div>
-                <script>
-                    var horizonChart = d3.horizonChart()
-                        .height(100)
-                        .colors(['#313695', '#4575b4', '#74add1', '#abd9e9', '#fee090', '#fdae61', '#f46d43', '#d73027']);
+            <div id="horizon-basic"></div>
+            <script>
+                var horizonChart = d3.horizonChart()
+                    .height(100)
+                    .colors(['#313695', '#4575b4', '#74add1', '#abd9e9', '#fee090', '#fdae61', '#f46d43', '#d73027']);
 
-                    var horizons = d3.select('#horizon-basic').selectAll('.horizon')
-                        .data([series])
-                        .enter().append('div')
-                        .attr('class', 'horizon')
-                        .each(horizonChart);
-                </script>
-            </p>
+                var horizons = d3.select('#horizon-basic').selectAll('.horizon')
+                    .data([series])
+                    .enter().append('div')
+                    .attr('class', 'horizon')
+                    .each(horizonChart);
+            </script>
 
-            <p>
+            <p class="mt1">
                 <a href="https://bl.ocks.org/kmandov/a1abe4aa380fb8b4bd0b4c081a76ce13" target="_blank">See full example</a>
             </p>
 
@@ -233,7 +231,11 @@ var horizons = d3.select('body').selectAll('.horizon')
       Here is what happens when you shrink an area chart -  as height decreases, there are less and less details:
     </p>
 
-        <div id="demo-bars" class="overflow-hidden"></div>
+    <div id="demo-bars" class="overflow-hidden"></div>
+
+    <p class="mt1">
+        <a href="http://bl.ocks.org/kmandov/5af65af3875c5c4afcdc0d675f60bb45" target="_blank" title="Loosing resolution when using area chart">See full example</a>
+    </p>
 
     <p class="pt3">
       Horizon Charts instead combine color and position. This allows to preserve resolution, even at small heights.
@@ -272,8 +274,6 @@ var horizons = d3.select('body').selectAll('.horizon')
 
       </script>
   </section>
-
-
 
   <section id="example-stocks" class="max-width-4 mx-auto px2 sm-px3 md-px4 py4">
       <h2 class="sans h4 caps m0">Show me the money</h2>
