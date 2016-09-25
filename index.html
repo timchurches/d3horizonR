@@ -15,6 +15,19 @@
     <script src="https://npmcdn.com/d3-horizon-chart/build/d3-horizon-chart.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
 
+    <script>
+        // generate some random data:
+        var series = [];
+        for (var i = 0, variance = 0; i < 1000; i++) {
+            variance += (Math.random() - 0.5) / 10;
+            series.push(Math.cos(i/100) + variance);
+        }
+
+        function random(index) {
+            return series;
+        }
+    </script>
+
 
 <style>
   .horizon {
@@ -84,55 +97,51 @@
 
 <body>
     <header class="center px2 py4">
-
         <div class="mb1">
-          <div class="center my3">
-            <img src="img/d3-horizon-charts-lead-01.png" alt="horizon-charts">
-          </div>
+            <div class="center my3">
+                <img src="img/d3-horizon-charts-lead-01.png" alt="horizon-charts">
+            </div>
 
-          <h1 class="inline-block m1">
-            D3 Horizon Charts
-        </h1>
+            <h1 class="inline-block m1">
+                D3 Horizon Charts
+            </h1>
             <p class="h4 m1 p1">D3 plug-in for drawing horizon charts in the browser and node.</p>
         </div>
-
     </header>
 
-  <section id="features" class="max-width-4 mx-auto px2 pb4">
+    <section id="features" class="max-width-4 mx-auto px2 pb4">
+        <div class="clearfix center">
+            <div class="col col-4 p2">
+                <img src="img/fast.png" alt="Fast">
+                <h3>Fast</h3>
+                <p>D3-horizon-chart uses Canvas to draw the horizon charts. This provides great performance even with large amounts
+                    of data.</p>
+            </div>
+            <div class="col col-4 p2">
+                <img src="img/lightweight.png" alt="Lightweight">
+                <h3>Lightweight</h3>
+                <p>
+                    The plugin follows the <a href="https://bost.ocks.org/mike/d3-plugin/">latest plugin guidelines</a> using
+                    D3’s new 4.0 module pattern. AMD, CommonJS, and vanilla environments are supported.
+                </p>
+            </div>
+            <div class="col col-4 p2">
+                <img src="img/simple.png" alt="Keep it simple, stupid">
+                <h3>Simple</h3>
+                <p>The plugin is heavily inspired by <a href="https://square.github.io/cubism/">cubism.js</a>, but doesn't make
+                    assumptions about real-time metrics and back-end servers.</p>
+            </div>
+        </div>
+    </section>
 
-    <div class="clearfix center">
-      <div class="col col-4 p2">
-        <img src="img/fast.png" alt="Fast">
-          <h3>Fast</h3>
-          <p>D3-horizon-chart uses Canvas to draw the horizon charts. This provides great performance even with large amounts of data.</p>
-      </div>
-      <div class="col col-4 p2">
-        <img src="img/lightweight.png" alt="Lightweight">
-        <h3>Lightweight</h3>
-        <p>
-        The plugin follows the <a href="https://bost.ocks.org/mike/d3-plugin/">latest plugin guidelines</a> using D3’s new 4.0 module pattern.
-            AMD, CommonJS, and vanilla environments are supported.
-          </p>
-      </div>
-      <div class="col col-4 p2">
-        <img src="img/simple.png" alt="Keep it simple, stupid">
-        <h3>Simple</h3>
-      <p>The plugin is heavily inspired by <a href="https://square.github.io/cubism/">cubism.js</a>, but doesn't make assumptions about real-time metrics and back-end servers.</p>
-      </div>
-    </div>
-  </section>
+
+	<section id="download" class="max-width-4 mx-auto px2 sm-px3 md-px4 py4">
+	    <h2 class="sans h4 caps m0">Getting Started</h2>
+	    <hr class="mt1">
 
 
-  <section id="download" class="max-width-4 mx-auto px2 sm-px3 md-px4 py4">
-    <h2 class="sans h4 caps m0">Getting Started</h2>
-    <hr class="mt1">
-    <section>
       <div class="sm-flex mxn2">
         <div class="sm-col-12 px2">
-
-            <p>
-                <a href="https://bl.ocks.org/kmandov/a1abe4aa380fb8b4bd0b4c081a76ce13" target="_blank">View live example</a>
-            </p>
           <p>
             First, include d3 and d3-horizon-chart on the webpage:
             <pre class="bg-gray p1"><code class="html">&lt;script src=&quot;https://d3js.org/d3.v4.js&quot;&gt;&lt;/script&gt;
@@ -140,7 +149,7 @@
           </p>
 
           <p class="pt2">
-              To draw a horizon chart use the <code>d3.horizonChart()</code> generator:
+              To draw a horizon chart use the <em>d3.horizonChart()</em> generator.
            <pre class="bg-gray p1"><code>var horizonChart = d3.horizonChart()
     .height(100)
     .colors(['#313695', '#4575b4', '#74add1', '#abd9e9', '#fee090', '#fdae61', '#f46d43', '#d73027']);
@@ -150,8 +159,30 @@ var horizons = d3.select('body').selectAll('.horizon')
     .enter().append('div')
     .attr('class', 'horizon')
     .each(horizonChart);</code></pre>
-
           </p>
+
+          <p>
+              In this case the <em>series</em> variable is an array of random data. Here is how the horizon chart looks like:
+          </p>
+
+          <p>
+          <div id="horizon-basic"></div>
+          <script>
+            var horizonChart = d3.horizonChart()
+                .height(100)
+                .colors(['#313695', '#4575b4', '#74add1', '#abd9e9', '#fee090', '#fdae61', '#f46d43', '#d73027']);
+
+            var horizons = d3.select('#horizon-basic').selectAll('.horizon')
+                .data([series])
+                .enter().append('div')
+                .attr('class', 'horizon')
+                .each(horizonChart);
+          </script>
+          </p>
+
+        <p>
+                <a href="https://bl.ocks.org/kmandov/a1abe4aa380fb8b4bd0b4c081a76ce13" target="_blank">See full example</a>
+            </p>
 
           <p class="pt2">
           d3-horizon-chart is available as a standalone library. The Latest builds can be downloaded here:</p>
@@ -166,7 +197,6 @@ var horizons = d3.select('body').selectAll('.horizon')
 
         </div>
       </div>
-    </section>
 
   </section>
 
@@ -186,20 +216,6 @@ var horizons = d3.select('body').selectAll('.horizon')
 
   </section>
 
-
-  <script>
-
-    // generate some random data:
-    var data = [];
-    for (var i = 0, variance = 0; i < 1000; i++) {
-      variance += (Math.random() - 0.5) / 10;
-      data.push(Math.cos(i/100) + variance);
-    }
-
-    function random(index) {
-      return data;
-    }
-     </script>
 
   <section id="example-bar-charts" class="max-width-4 mx-auto px2 sm-px3 md-px4 py4">
       <h2 class="sans h4 caps m0">Horizon Charts</h2>
