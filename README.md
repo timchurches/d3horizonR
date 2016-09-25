@@ -34,6 +34,7 @@ Soon...
 - [x] Build the examples page with basscss
 - [x] Add support for negative bands
 - [x] Add example: stocks / ref: cubism
+- [ ] Add the ‘d3-module’ keyword to the module
 - [ ] Add support for values on mouse hover
 - [ ] Example: Update the stock data & review the date parsing. Make it a gist.
 - [ ] Example: time series: data + axis support
