@@ -36,7 +36,6 @@ export default function () {
         // update the width
         //width = horizon.node().getBoundingClientRect().width;
         width = dIncrement * data.length;
-
         canvas = horizon.append('canvas');
 
         canvas
@@ -59,12 +58,8 @@ export default function () {
 
         var max = Math.max(-_extent[0], _extent[1]);
         y.domain([0, max]);
-
-
         //x = d3.scaleTime().domain[];
-
         axis = axisTop(x).ticks(5);
-
 
         // Draw ----------------------------------------------------------------------------
 
@@ -126,45 +121,42 @@ export default function () {
             }
         }
 
+        /*
+        // Offscreen Draw -----------------------------------------------------------------------
 
-		/*
-	    // Offscreen Draw -----------------------------------------------------------------------
+        function createOffscreenCanvas(width,height){
+            var canvas = document.createElement('canvas');
+            canvas.width = width;
+            canvas.height = height;
+            return canvas;
+        }
 
-		function createOffscreenCanvas(width,height){
-		    var canvas = document.createElement('canvas');
-		    canvas.width = width;
-		    canvas.height = height;
-		    return canvas;
-		}
+        var offscreenCanvas = createOffscreenCanvas(increment * data.length, height);
+        var offscreenContext = offscreenCanvas.getContext('2d');
+        // draw each band:
+        for (var b = 0; b < bands; b++) {
+            offscreenContext.fillStyle = colors[b];
 
-		var offscreenCanvas = createOffscreenCanvas(increment * data.length, height);
-		var offscreenContext = offscreenCanvas.getContext('2d');
-	    // draw each band:
-	    for (var b = 0; b < bands; b++) {
-	        offscreenContext.fillStyle = colors[b];
+            // Adjust the range based on the current band index.
+            var y0 = (b + 1 - bands) * height;
+            y.range([bands * height + y0, y0]);
 
-	        // Adjust the range based on the current band index.
-	        var y0 = (b + 1 - bands) * height;
-	        y.range([bands * height + y0, y0]);
+            // draw the whole period on an offscreen canvas
+            for (var i = 0; i < data.length; i++) {
+            offscreenContext.fillRect(i * increment, y(data[i]), step, y(0) - y(data[i]));
+            }
+        }
 
-	        // draw the whole period on an offscreen canvas
-	        for (var i = 0; i < data.length; i++) {
-	          offscreenContext.fillRect(i * increment, y(data[i]), step, y(0) - y(data[i]));
-	        }
-	    }
-
-	    var onscreenImage;
-	    _draw = function() {
-	    	onscreenImage = offscreenContext.getImageData(-offsetX, 0, width, height);
+        var onscreenImage;
+        _draw = function() {
+            onscreenImage = offscreenContext.getImageData(-offsetX, 0, width, height);
             context.putImageData(onscreenImage, 0, 0);
 
             //context.clearRect(0, 0, width, height);
             //context.translate(offsetX, 0);
             //context.drawImage(offscreenCanvas, offsetX, 0);
-	    };
-	    */
-
-
+        };
+        */
     }
 
     my.axis = function (_) {
