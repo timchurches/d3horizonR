@@ -13,7 +13,7 @@
   "author": {
     "name": "Kiril Mandov",
     "url": "http://morphocode.com"
-  },  
+  },
   "license": "MIT",
   "main": "build/d3-horizon-chart.js",
   "jsnext:main": "index",
@@ -28,6 +28,7 @@
     "prepublish": "npm run test && uglifyjs --preamble \"$(preamble)\" build/d3-horizon-chart.js -c -m -o build/d3-horizon-chart.min.js"
   },
   "dependencies": {
+    "d3-array": "^1.0.1",
     "d3-axis": "^1.0.1",
     "d3-scale": "^1.0.1",
     "d3-selection": "^1.0.2"
@@ -39,5 +40,5 @@
     "rollup": "^0.34.13",
     "tape": "^4.6.0",
     "uglify-js": "^2.7.3"
-  }  
+  }
 }
