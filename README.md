@@ -36,11 +36,17 @@ Soon...
 - [x] Add example: stocks / ref: cubism
 - [x] Add the ‘d3-module’ keyword to the module
 - [x] Example: Sample usage - https://bl.ocks.org/kmandov/a1abe4aa380fb8b4bd0b4c081a76ce13
+- [ ] Explain options: changing colors, number of bands, modes: offset/mirror
 - [ ] Example: Update the stock data & review the date parsing. Make it a gist.
+- [ ] Example: Small multiples with horizon charts. ref: http://bl.ocks.org/mbostock/e1192fe405703d8321a5187350910e08
 - [ ] Example: time series: data + axis support
 - [ ] Example: using browserify & webpack
 - [ ] Example: pedestrian movement
 - [ ] Example: Show values on mouse over
+- [ ] Example: Draw horizon charts from real-time data
+- [ ] Example: Make an interactive example explaining what is a horizon charts and how to read it
+- [ ] Site: Fix the broken basscss workflow. Update basscss.
+- [ ] Site: Link the article about Small multiples in the context of an example
 - [ ] Add support for values on mouse hover
 - [ ] Add Screenshots to the Readme
 - [ ] Add API reference
