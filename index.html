@@ -98,14 +98,17 @@
 <body>
     <header class="center px2 py4">
         <div class="mb1">
-            <div class="center my3">
+            <div class="center my2">
                 <img src="img/d3-horizon-charts-lead-01.png" alt="horizon-charts">
             </div>
 
             <h1 class="inline-block m1">
                 D3 Horizon Charts
             </h1>
-            <p class="h4 m1 p1">D3 plug-in for drawing horizon charts in the browser and node.</p>
+            <p class="h4 pb1">Drawing horizon charts in the browser and node. </p>
+            <p class="py2">
+                <a class="github-button" href="https://github.com/kmandov/d3-horizon-chart" data-icon="octicon-star" data-style="mega" aria-label="Star d3-horizon-chart on GitHub">Star</a>
+            </p>
         </div>
     </header>
 
@@ -135,22 +138,22 @@
     </section>
 
 
-	<section id="download" class="max-width-4 mx-auto px2 sm-px3 md-px4 py4">
-	    <h2 class="sans h4 caps m0">Getting Started</h2>
-	    <hr class="mt1">
+    <section id="download" class="max-width-4 mx-auto px2 sm-px3 md-px4 py4">
+        <h2 class="sans h4 caps m0">Getting Started</h2>
+        <hr class="mt1">
 
 
-      <div class="sm-flex mxn2">
-        <div class="sm-col-12 px2">
-          <p>
-            First, include d3 and d3-horizon-chart on the webpage:
-            <pre class="bg-gray p1"><code class="html">&lt;script src=&quot;https://d3js.org/d3.v4.js&quot;&gt;&lt;/script&gt;
+        <div class="sm-flex mxn2">
+            <div class="sm-col-12 px2">
+            <p>
+                First, include d3 and d3-horizon-chart on the webpage:
+                <pre class="bg-gray p1"><code class="html">&lt;script src=&quot;https://d3js.org/d3.v4.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/d3-horizon-chart&quot;&gt;&lt;/script&gt;</code></pre>
-          </p>
+            </p>
 
-          <p class="pt2">
-              To draw a horizon chart use the <em>d3.horizonChart()</em> generator.
-           <pre class="bg-gray p1"><code>var horizonChart = d3.horizonChart()
+            <p class="pt2">
+                To draw a horizon chart use the <em>d3.horizonChart()</em> generator.
+                <pre class="bg-gray p1"><code>var horizonChart = d3.horizonChart()
     .height(100)
     .colors(['#313695', '#4575b4', '#74add1', '#abd9e9', '#fee090', '#fdae61', '#f46d43', '#d73027']);
 
@@ -159,28 +162,28 @@ var horizons = d3.select('body').selectAll('.horizon')
     .enter().append('div')
     .attr('class', 'horizon')
     .each(horizonChart);</code></pre>
-          </p>
+            </p>
 
-          <p>
-              In this case the <em>series</em> variable is an array of random data. Here is how the horizon chart looks like:
-          </p>
+            <p>
+                In this case the <em>series</em> variable is an array of random-like data. Here is how the horizon chart looks like:
+            </p>
 
-          <p>
-          <div id="horizon-basic"></div>
-          <script>
-            var horizonChart = d3.horizonChart()
-                .height(100)
-                .colors(['#313695', '#4575b4', '#74add1', '#abd9e9', '#fee090', '#fdae61', '#f46d43', '#d73027']);
+            <p>
+                <div id="horizon-basic"></div>
+                <script>
+                    var horizonChart = d3.horizonChart()
+                        .height(100)
+                        .colors(['#313695', '#4575b4', '#74add1', '#abd9e9', '#fee090', '#fdae61', '#f46d43', '#d73027']);
 
-            var horizons = d3.select('#horizon-basic').selectAll('.horizon')
-                .data([series])
-                .enter().append('div')
-                .attr('class', 'horizon')
-                .each(horizonChart);
-          </script>
-          </p>
+                    var horizons = d3.select('#horizon-basic').selectAll('.horizon')
+                        .data([series])
+                        .enter().append('div')
+                        .attr('class', 'horizon')
+                        .each(horizonChart);
+                </script>
+            </p>
 
-        <p>
+            <p>
                 <a href="https://bl.ocks.org/kmandov/a1abe4aa380fb8b4bd0b4c081a76ce13" target="_blank">See full example</a>
             </p>
 
@@ -341,8 +344,6 @@ var horizons = d3.select('body').selectAll('.horizon')
       The plugin was developed by <a href="//github.com/kmandov">Kiril Mandov</a> of <a href="//morphocode.com">Morphocode</a>. The source is <a href="//github.com/kmandov/d3-horizon-chart">available on Github</a> under the MIT License.
     </p>
 
-    <iframe src="https://ghbtns.com/github-btn.html?user=kmandov&repo=d3-horizon-chart&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
-
   </section>
 
 
@@ -390,6 +391,8 @@ var horizons = d3.select('body').selectAll('.horizon')
     d3.selectAll("code:not([class])").classed("javascript", 1);
     d3.selectAll('code').each(function() { hljs.highlightBlock(this); });
 </script>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>
 
 </html>
