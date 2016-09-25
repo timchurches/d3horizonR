@@ -34,14 +34,14 @@ Soon...
 - [x] Build the examples page with basscss
 - [x] Add support for negative bands
 - [x] Add example: stocks / ref: cubism
-- [ ] Add the ‘d3-module’ keyword to the module
-- [ ] Add support for values on mouse hover
+- [x] Add the ‘d3-module’ keyword to the module
+- [x] Example: Sample usage - https://bl.ocks.org/kmandov/a1abe4aa380fb8b4bd0b4c081a76ce13
 - [ ] Example: Update the stock data & review the date parsing. Make it a gist.
 - [ ] Example: time series: data + axis support
 - [ ] Example: using browserify & webpack
 - [ ] Example: pedestrian movement
 - [ ] Example: Show values on mouse over
-- [ ] Add +5 examples + gist code
+- [ ] Add support for values on mouse hover
 - [ ] Add Screenshots to the Readme
 - [ ] Add API reference
 - [ ] Add axis support
