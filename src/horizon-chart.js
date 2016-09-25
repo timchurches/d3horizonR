@@ -25,10 +25,9 @@ export default function () {
         y = scaleLinear().range([0, height]),
         canvas = null;
 
-
     // Appends a canvas element to the current element
     // and draws a horizon graph based on data & settings
-    function my(data) {
+    function horizonChart(data) {
 
         var horizon = select(this);
         var dIncrement = step + spacing;
@@ -159,61 +158,61 @@ export default function () {
         */
     }
 
-    my.axis = function (_) {
-        return arguments.length ? (axis = _, my) : axis;
+    horizonChart.axis = function (_) {
+        return arguments.length ? (axis = _, horizonChart) : axis;
     };
 
-    my.canvas = function (_) {
-        return arguments.length ? (canvas = _, my) : canvas;
+    horizonChart.canvas = function (_) {
+        return arguments.length ? (canvas = _, horizonChart) : canvas;
     };
 
     // Array of colors representing the number of bands
-    my.colors = function (_) {
+    horizonChart.colors = function (_) {
         if (!arguments.length) return colors;
         colors = _;
 
         // update the number of bands
         bands = colors.length >> 1;
 
-        return my;
+        return horizonChart;
     };
 
     // get/set the height of the graph
-    my.height = function (_) {
-        return arguments.length ? (height = _, my) : height;
+    horizonChart.height = function (_) {
+        return arguments.length ? (height = _, horizonChart) : height;
     };
 
     // get/set the step of the graph, i.e. the width of each bar
-    my.step = function (_) {
-        return arguments.length ? (step = _, my) : step;
+    horizonChart.step = function (_) {
+        return arguments.length ? (step = _, horizonChart) : step;
     };
 
     // get/set the spacing between the bars of the graph
-    my.spacing = function (_) {
-        return arguments.length ? (spacing = _, my) : spacing;
+    horizonChart.spacing = function (_) {
+        return arguments.length ? (spacing = _, horizonChart) : spacing;
     };
 
     // get/set the title of the horizon
-    my.title = function (_) {
-        return arguments.length ? (title = _, my) : title;
+    horizonChart.title = function (_) {
+        return arguments.length ? (title = _, horizonChart) : title;
     };
 
     // mirror or offset
-    my.mode = function (_) {
-        return arguments.length ? (mode = _, my) : mode;
+    horizonChart.mode = function (_) {
+        return arguments.length ? (mode = _, horizonChart) : mode;
     };
 
     // get/set the extents of the Y axis. If not set the extents are derived from the data
-    my.extent = function (_) {
-        return arguments.length ? (extent = _, my) : extent;
+    horizonChart.extent = function (_) {
+        return arguments.length ? (extent = _, horizonChart) : extent;
     };
 
-    my.offsetX = function (_) {
-        return arguments.length ? (offsetX = _, my) : offsetX;
+    horizonChart.offsetX = function (_) {
+        return arguments.length ? (offsetX = _, horizonChart) : offsetX;
     };
 
     // the data frame currently being shown:
-    my.indexExtent = function () {
+    horizonChart.indexExtent = function () {
         var increment = step + spacing,
             startIndex = -offsetX / increment,
             endIndex = startIndex + width / increment;
@@ -221,6 +220,6 @@ export default function () {
         return [startIndex, endIndex];
     };
 
-    return my;
+    return horizonChart;
 
 }
