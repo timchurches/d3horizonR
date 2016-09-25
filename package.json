@@ -25,7 +25,8 @@
   "scripts": {
     "pretest": "rm -rf build && mkdir build && rollup --banner \"$(preamble)\" -g d3-array:d3,d3-axis:d3,d3-scale:d3,d3-selection:d3 -f umd -n d3 -o build/d3-horizon-chart.js -- index.js",
     "test": "tape 'test/**/*-test.js' && eslint index.js src",
-    "prepublish": "npm run test && uglifyjs --preamble \"$(preamble)\" build/d3-horizon-chart.js -c -m -o build/d3-horizon-chart.min.js"
+    "prepublish": "npm run test && uglifyjs --preamble \"$(preamble)\" build/d3-horizon-chart.js -c -m -o build/d3-horizon-chart.min.js",
+    "postpublish": "VERSION=`node -e 'console.log(require(\"./package.json\").version)'`; git push && git push --tags && zip -j build/d3-horizon-chart.zip -- LICENSE README.md build/d3-horizon-chart.js build/d3-horizon-chart.min.js"
   },
   "dependencies": {
     "d3-array": "^1.0.1",
