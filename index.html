@@ -282,11 +282,14 @@ var horizons = d3.select('body').selectAll('.horizon')
   </section>
 
   <section id="example-stocks" class="max-width-4 mx-auto px2 sm-px3 md-px4 py4">
-      <h2 class="sans h4 caps m0">Show me the money</h2>
+      <h2 class="sans h4 caps m0">Small Multiples</h2>
       <hr class="mt1">
 
     <p>
-      Horizon Charts are often used to display stock data.
+        Horizon Charts increase data density by preserving resolution at smaller heights. This allows to plot more data on less space, providing an effective method to compare multiple data sources in a single view.
+    </p>
+    <p>
+        Dashboards composed of multiple horizon charts offer good way to analyze patterns over time. Time series data such as stock information or CPU/memory performance across machines are some of the popular usecases.
     </p>
 
         <div id="demo-stocks" class="overflow-hidden"></div>
