@@ -10,18 +10,31 @@ This makes it a good fit when you just want to plot your data as a horizon chart
 
 `d3-horizon-chart` follows the [latest plugin guidelines](https://bost.ocks.org/mike/d3-plugin/) using D3’s new 4.0 module pattern.
 
-## Examples
-
-Check out the [examples page](http://kmandov.github.io/d3-horizon-chart/)
-
-
 ## Installing
 
 If you use NPM, `npm install d3-horizon-chart`. Otherwise, download the [latest release](https://github.com/kmandov/d3-horizon-chart/releases/latest).
 
+## Demo
+
+- [Drawing a single horizon chart](http://bl.ocks.org/kmandov/a1abe4aa380fb8b4bd0b4c081a76ce13)
+- [Loosing resolution when using area chart](http://bl.ocks.org/kmandov/5af65af3875c5c4afcdc0d675f60bb45)
+
+Check out the [project page](http://kmandov.github.io/d3-horizon-chart/) for more examples.
+
+
 ## API Reference
 
-Soon...
+<a name="horizon" href="#horizon">#</a> <b>horizonChart</b>()
 
-<a href="#horizon-chart" name="horizon-chart">#</a> <b>horizon-chart</b>()
+Constructs a new horizonChart generator with the default settings.
+
+<a name="horizon_height" href="#horizon_height">#</a> <i>horizon</i>.<b>height</b>([<i>height</i>])
+
+If <i>height</i> is specified, sets the height of the chart to the specified number and returns this horizonChart generator. If <i>height</i> is not specified, returns the current height accessor, which defaults to:
+
+```js
+function height() {
+  return 30;
+}
+```
 
