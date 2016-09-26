@@ -16,14 +16,12 @@
 
     <script>
         // generate some random data:
-        var series = [];
-        for (var i = 0, variance = 0; i < 1000; i++) {
+        var series = [], positiveSeries = [];
+        for (var i = 0, variance = 0, value; i < 1000; i++) {
             variance += (Math.random() - 0.5) / 10;
-            series.push(Math.cos(i/100) + variance);
-        }
-
-        function random(index) {
-            return series;
+            value = Math.cos(i/100) + variance;
+            series.push(value);
+            positiveSeries.push(Math.abs(value));
         }
     </script>
 
@@ -150,7 +148,8 @@
             <p class="pt2">
                 To draw a horizon chart use the <em>d3.horizonChart()</em> generator:
                 <pre class="bg-gray p1"><code>var horizonChart = d3.horizonChart()
-    .height(100)
+    .height(80)
+    .title('Horizon, 4-band')
     .colors(['#313695', '#4575b4', '#74add1', '#abd9e9', '#fee090', '#fdae61', '#f46d43', '#d73027']);
 
 var horizons = d3.select('body').selectAll('.horizon')
@@ -232,7 +231,7 @@ var horizons = d3.select('body').selectAll('.horizon')
       Here is what happens when you shrink an area chart -  as height decreases, there are less and less details:
     </p>
 
-    <div id="demo-bars" class="overflow-hidden"></div>
+    <div id="demo-area-charts" class="overflow-hidden"></div>
 
     <p class="mt1">
         <em><a href="http://bl.ocks.org/kmandov/5af65af3875c5c4afcdc0d675f60bb45" target="_blank" title="Loosing resolution when using area chart">View full example</a></em>
@@ -244,23 +243,24 @@ var horizons = d3.select('body').selectAll('.horizon')
 
     <div id="demo-horizons" class="overflow-hidden"></div>
 
-      <script>
+    <script>
 
-    d3.select("#demo-bars").selectAll(".horizon")
-      .data(d3.range(0, 3).map(random))
-      .enter()
-      .append('div')
-      .attr('class', 'horizon')
-      .each(function(d, i) {
-          d3.horizonChart()
-            .height(200 / (i + 1))
-            .colors(["#abd9e9", "#fee090"])
-            .call(this, d, i);
-      });
+    d3.select("#demo-area-charts").selectAll(".horizon")
+        .data(d3.range(0, 4).map(function() {return positiveSeries;}))
+        .enter().append('div')
+        .attr('class', 'horizon')
+        .each(function(d, i) {
+            var height = 120 / (i + 1);
+            d3.horizonChart()
+                .colors(["#abd9e9", "#fee090"])
+                .height(height)
+                .title('Area (' + height + 'px)')
+                .call(this, d);
+        });
 
     // horizon graphs preserve resolution:
     d3.select("#demo-horizons").selectAll(".horizon")
-      .data(d3.range(0, 3).map(random))
+      .data(d3.range(0, 3).map(function() {return series;}))
       .enter()
       .append('div')
       .attr('class', 'horizon')
