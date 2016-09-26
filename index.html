@@ -232,6 +232,20 @@ var horizons = d3.select('body').selectAll('.horizon')
     </p>
 
     <div id="demo-area-charts" class="overflow-hidden"></div>
+    <script>
+        d3.select("#demo-area-charts").selectAll(".horizon")
+            .data(d3.range(0, 4).map(function() {return positiveSeries;}))
+            .enter().append('div')
+            .attr('class', 'horizon')
+            .each(function(d, i) {
+                var height = 120 / (i + 1);
+                d3.horizonChart()
+                    .colors(["#abd9e9", "#fee090"])
+                    .height(height)
+                    .title('Area (' + height + 'px)')
+                    .call(this, d);
+            });
+    </script>
 
     <p class="mt1">
         <em><a href="http://bl.ocks.org/kmandov/5af65af3875c5c4afcdc0d675f60bb45" target="_blank" title="Loosing resolution when using area chart">View full example</a></em>
@@ -242,38 +256,29 @@ var horizons = d3.select('body').selectAll('.horizon')
     </p>
 
     <div id="demo-horizons" class="overflow-hidden"></div>
-
     <script>
+        // 4-band horizon (4 negative & 4 positive bands)
+        var colors = ['#313695', '#4575b4', '#74add1', '#abd9e9', '#fee090', '#fdae61', '#f46d43', '#d73027'];
+        var n = colors.length / 2;
 
-    d3.select("#demo-area-charts").selectAll(".horizon")
-        .data(d3.range(0, 4).map(function() {return positiveSeries;}))
-        .enter().append('div')
-        .attr('class', 'horizon')
-        .each(function(d, i) {
-            var height = 120 / (i + 1);
-            d3.horizonChart()
-                .colors(["#abd9e9", "#fee090"])
-                .height(height)
-                .title('Area (' + height + 'px)')
-                .call(this, d);
-        });
+        var horizons = d3.select('#demo-horizons').selectAll('.horizon')
+            .data(d3.range(0, n).map(function() {return positiveSeries;}))
+            .enter().append('div')
+            .attr('class', 'horizon')
+            .each(function(d, i) {
+                var j = i+1;
+                d3.horizonChart()
+                    .colors(colors.slice(n-j, n+j))
+                    .height(120/j)
+                    .title('Horizon, ' + j + '-band (' + 120/j + 'px)')
+                    .call(this, d);
+            });
+    </script>
 
-    // horizon graphs preserve resolution:
-    d3.select("#demo-horizons").selectAll(".horizon")
-      .data(d3.range(0, 3).map(function() {return series;}))
-      .enter()
-      .append('div')
-      .attr('class', 'horizon')
-      // for each data array, draw a horizon graph:
-      .each(function(d, i) {
-        var j = 3-i;
-          d3.horizonChart()
-            .height(200 / (i + 1))
-            .colors(["#313695", "#4575b4", "#74add1", "#abd9e9", "#fee090", "#fdae61", "#f46d43", "#d73027"].slice(j, j==0? undefined: -j))
-            .call(this, d, i);
-      });
+    <p class="mt1">
+        <em><a href="http://bl.ocks.org/kmandov/6e91165d4f32534ec4cab806b18b6684" target="_blank" title="Horizon charts preserve resolution at smaller heights">View full example</a></em>
+    </p>
 
-      </script>
   </section>
 
   <section id="example-stocks" class="max-width-4 mx-auto px2 sm-px3 md-px4 py4">
