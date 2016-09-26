@@ -18,6 +18,8 @@ This makes it a good fit when you just want to plot your data as a horizon chart
 - [Drawing a single horizon chart](http://bl.ocks.org/kmandov/a1abe4aa380fb8b4bd0b4c081a76ce13)
 - [Loosing resolution when using area chart](http://bl.ocks.org/kmandov/5af65af3875c5c4afcdc0d675f60bb45)
 - [Horizon charts preserve resolution at smaller heights](http://bl.ocks.org/kmandov/6e91165d4f32534ec4cab806b18b6684)
+- [Visualizing stock data using horizon charts](http://bl.ocks.org/kmandov/dcb94f02e71e3560eb3255f2de3120e4)
+
 
 Check out the [project page](http://kmandov.github.io/d3-horizon-chart/) for more examples.
 
