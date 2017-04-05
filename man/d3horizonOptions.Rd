@@ -4,9 +4,9 @@
 \alias{d3horizonOptions}
 \title{Options for d3horizon}
 \usage{
-d3horizonOptions(title = "", colors = c("#313695", "#4575b4", "#74add1",
-  "#abd9e9", "#fee090", "#fdae61", "#f46d43", "#d73027"), mode = "mirror",
-  ...)
+d3horizonOptions(height = 80, title = "", colors = c("#313695", "#4575b4",
+  "#74add1", "#abd9e9", "#fee090", "#fdae61", "#f46d43", "#d73027"),
+  mode = "mirror", ...)
 }
 \description{
 Options for d3horizon

@@ -12,4 +12,19 @@ Create a \code{d3.js} horizon chart using the \code{d3-horizon-chart}
 plugin from \href{https://github.com/kmandov/d3-horizon-chart}{d3-horizon-chart} with
 flexibility and convenience of \code{htmlwidgets}.
 }
+\examples{
+#devtools::install_github("timelyportfolio/d3horizonR")
+library(d3horizonR)
+
+d3horizon(
+  lapply(1:10, function(x){cumprod(1+runif(1000,-0.02,0.02))-1})
+)
+
+# demonstrate options
+d3horizon(
+  lapply(1:10, function(x){cumprod(1+runif(1000,-0.02,0.02))-1}),
+  d3horizonOptions(height=30, colors = strtrim(cm.colors(4),7))
+)
+
+}
 

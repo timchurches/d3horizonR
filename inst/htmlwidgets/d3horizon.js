@@ -6,19 +6,29 @@ HTMLWidgets.widget({
 
   factory: function(el, width, height) {
 
-    var horizonChart;
-
     return {
 
-      chart: horizonChart,
+      chart: null,
 
       renderValue: function(x) {
+        var horizonChart;
 
-        horizonChart = d3.horizonChart()
-          .height(80)
-          .title('Horizon, 4-band')
-          .colors(['#313695', '#4575b4', '#74add1', '#abd9e9', '#fee090', '#fdae61', '#f46d43', '#d73027']);
+        if(this.chart) {
+          horizonChart = this.chart;
+        } else {
+          this.chart = horizonChart = d3.horizonChart();
+        }
 
+
+        Object.keys(x.options).map(function(ky) {
+          if(horizonChart[ky]) {
+            try {
+              horizonChart[ky](x.options[ky]);
+            } catch(e) {
+              console.log('option ' + ky + "does not seem supported.");
+            }
+          }
+        });
 
         var horizons = d3.select(el).selectAll('.horizon')
           .data(x.data)
