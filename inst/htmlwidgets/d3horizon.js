@@ -30,6 +30,10 @@ HTMLWidgets.widget({
           }
         });
 
+        // bad hack to fit chart by forcing step
+        //  need to fix this
+        horizonChart.step(el.getBoundingClientRect().width/x.data[0].length);
+
         var horizons = d3.select(el).selectAll('.horizon')
           .data(x.data)
           .enter().append('div')
