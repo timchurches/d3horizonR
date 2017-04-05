@@ -1,0 +1,32 @@
+Package: d3horizonR
+Title: Horizon Chart 'htmlwidget'
+Version: 0.0.0.9000
+Date: 2017-04-05
+Authors@R: c(
+      person(
+        "Mike", "Bostock"
+        , role = c("aut", "cph")
+        , comment = "d3.js library, http://d3js.org"
+      ),
+      person(
+        "Kiril", "Mandov"
+        , role = c("aut", "cph")
+        , comment = "d3-horizon-chart plugin in htmlwidgets/lib, https://github.com/kmandov/d3-horizon-chart"
+      ),
+      person(
+        "Kent", "Russell"
+        , role = c("aut", "cre")
+        , comment = "R interface"
+        , email = "kent.russell@timelyportfolio.com"
+      )
+    )
+Description: Create 'd3.js' horizon charts.
+Depends:
+    R (>= 3.3.1)
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 5.0.1
+Imports:
+    d3r,
+    htmltools

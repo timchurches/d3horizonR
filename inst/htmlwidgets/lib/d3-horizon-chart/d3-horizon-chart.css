@@ -1,0 +1,29 @@
+.d3horizon .horizon {
+    border-top: solid 1px #000;
+    border-bottom: solid 1px #000;
+    overflow: hidden;
+    position: relative;
+}
+.d3horizon .horizon + .horizon {
+    border-top: none;
+}
+.d3horizon .horizon canvas {
+    display: block;
+    image-rendering: pixelated;
+}
+.d3horizon .horizon .title,
+.d3horizon .horizon .value {
+  bottom: 0;
+  line-height: 30px;
+  margin: 0 6px;
+  position: absolute;
+  font-family: sans-serif;
+  text-shadow: 0 1px 0 rgba(255,255,255,.5);
+  white-space: nowrap;
+}
+.d3horizon .horizon .title {
+  left: 0;
+}
+.d3horizon .horizon .value {
+  right: 0;
+}
