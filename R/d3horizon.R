@@ -96,7 +96,7 @@ renderD3horizon <- function(expr, env = parent.frame(), quoted = FALSE) {
 #' @keywords internal
 d3horizon_html <- function(id, style, class, ...){
   tagList(
-    tags$div( id = id, class = class, style = style, ...),
-    d3r::d3_dep_v4()
+    tags$div( id = id, class = class, style = style, ...)#,
+    #d3r::d3_dep_v4()
   )
 }

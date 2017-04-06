@@ -1,1 +1,1 @@
-export default global.HTMLWidgets;
+export default window.HTMLWidgets;

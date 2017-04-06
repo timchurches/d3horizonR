@@ -2,5 +2,5 @@ dependencies:
   - name: d3-horizon-chart
     version: 0.0.6
     src: htmlwidgets/lib/d3-horizon-chart
-    script: d3-horizon-chart.min.js
+    #script: d3-horizon-chart.min.js
     stylesheet: d3-horizon-chart.css
