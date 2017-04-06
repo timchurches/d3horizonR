@@ -36,8 +36,8 @@ First on my priority list will be easy support of `data.frame` and its derivativ
 
 ``` r
 d3horizon(
-  data = lapply(1:10, function(x) cumprod(1 + runif(1000, -x/100, x/100))),
-  options = d3horizonOptions(height = 20),
+  data = lapply(1:10, function(x) cumprod(1 + runif(1000, -x/100, x/100)) - 1),
+  options = d3horizonOptions(height = 20, mode = "offset"),
   width = 400,
   height = 300
 )
