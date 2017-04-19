@@ -26,7 +26,7 @@ library(d3horizonR)
 d3horizon(
   list(cumprod(1 + runif(1000, -0.05, 0.05))),
   width = 400,
-  height = 90
+  height = "auto"
 )
 ```
 
@@ -39,11 +39,15 @@ d3horizon(
   data = lapply(1:10, function(x) cumprod(1 + runif(1000, -x/100, x/100)) - 1),
   options = d3horizonOptions(height = 20, mode = "offset"),
   width = 400,
-  height = 300
+  height = "auto"
 )
 ```
 
 ![](README-unnamed-chunk-3-1.png)
+
+### Development
+
+Unlike many other `htmlwidgets` but similar to `leaflet`, all of the JavaScript code is in `./javascript/d3-horizon-chart`. Please make changes in this directory. Currently, to build new, run `npm run prepublish` which will also copy the necessary `d3horizon.js` into `./inst/htmlwidgets`. The benefit is that `d3` is self-contained so it will not interfere with other `d3v3`-based htmlwidgets.
 
 ### Code of Conduct
 
