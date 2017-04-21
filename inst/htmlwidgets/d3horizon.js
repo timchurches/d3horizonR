@@ -265,13 +265,14 @@ HTMLWidgets.widget({
         //  need to fix this
         horizonChart.step(el.getBoundingClientRect().width/x.data[0].length);
 
+        // brute force remove any previous horizons
+        //  will need to improve this in future
+        d3Selection.select(el).selectAll('.horizon').remove();
+
         var horizons = d3Selection.select(el).selectAll('.horizon')
-          .data(x.data);
-
-        var horizons_enter = horizons.enter()
+          .data(x.data)
+          .enter()
           .append('div');
-
-        horizons = horizons.merge(horizons_enter);
 
         horizons
           .attr('class', 'horizon')
