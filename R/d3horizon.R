@@ -24,7 +24,7 @@
 d3horizon <- function(
   data = NULL,
   options = d3horizonOptions(),
-  width = NULL, height = NULL,
+  width = NULL, height = "auto",
   elementId = NULL
 ) {
 
