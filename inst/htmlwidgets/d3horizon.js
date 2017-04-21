@@ -266,8 +266,14 @@ HTMLWidgets.widget({
         horizonChart.step(el.getBoundingClientRect().width/x.data[0].length);
 
         var horizons = d3Selection.select(el).selectAll('.horizon')
-          .data(x.data)
-          .enter().append('div')
+          .data(x.data);
+
+        var horizons_enter = horizons.enter()
+          .append('div');
+
+        horizons = horizons.merge(horizons_enter);
+
+        horizons
           .attr('class', 'horizon')
           .each(horizonChart);
 
