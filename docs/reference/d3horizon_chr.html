@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>'d3.js' Horizon Chart 'htmlwidget' — d3horizon â€¢ d3horizonR</title>
+<title>Character Version of d3horizon — d3horizon_chr â€¢ d3horizonR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -68,32 +68,63 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>'d3.js' Horizon Chart 'htmlwidget'</h1>
+    <h1>Character Version of d3horizon</h1>
     </div>
 
     
-    <p>Create a <code>d3.js</code> horizon chart using the <code>d3-horizon-chart</code>
-plugin from <a href = 'https://github.com/kmandov/d3-horizon-chart'>d3-horizon-chart</a> with
-flexibility and convenience of <code>htmlwidgets</code>.</p>
+    <p>Create a character version of interactive sparklines
+for use with other 'htmlwidgets' or tags.</p>
     
 
-    <pre><span class='fu'>d3horizon</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>options</span> <span class='kw'>=</span> <span class='fu'><a href='d3horizonOptions.html'>d3horizonOptions</a></span>(), <span class='kw'>width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>height</span> <span class='kw'>=</span> <span class='st'>"auto"</span>, <span class='kw'>elementId</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre><span class='fu'>d3horizon_chr</span>(<span class='no'>...</span>)</pre>
         
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>#devtools::install_github("timelyportfolio/d3horizonR")</span>
-<span class='fu'>library</span>(<span class='no'>d3horizonR</span>)
-
-<span class='fu'>d3horizon</span>(
-  <span class='fu'>lapply</span>(<span class='fl'>1</span>:<span class='fl'>10</span>, <span class='kw'>function</span>(<span class='no'>x</span>){<span class='fu'>cumprod</span>(<span class='fl'>1</span>+<span class='fu'>runif</span>(<span class='fl'>1000</span>,-<span class='fl'>0.02</span>,<span class='fl'>0.02</span>))-<span class='fl'>1</span>})
-)</div><div class='output co'>#&gt; <span class='warning'>Warning: file("") only supports open = "w+" and open = "w+b": using the former</span></div><div class='output co'>#&gt; <span class='error'>Error in dirname(to): a character vector argument expected</span></div><div class='input'>
-<span class='co'># demonstrate options</span>
-<span class='fu'>d3horizon</span>(
-  <span class='fu'>lapply</span>(<span class='fl'>1</span>:<span class='fl'>10</span>, <span class='kw'>function</span>(<span class='no'>x</span>){<span class='fu'>cumprod</span>(<span class='fl'>1</span>+<span class='fu'>runif</span>(<span class='fl'>1000</span>,-<span class='fl'>0.02</span>,<span class='fl'>0.02</span>))-<span class='fl'>1</span>}),
-  <span class='fu'><a href='d3horizonOptions.html'>d3horizonOptions</a></span>(<span class='kw'>height</span><span class='kw'>=</span><span class='fl'>30</span>, <span class='kw'>colors</span> <span class='kw'>=</span> <span class='fu'>strtrim</span>(<span class='fu'>cm.colors</span>(<span class='fl'>4</span>),<span class='fl'>7</span>))
-)</div><div class='output co'>#&gt; <span class='warning'>Warning: file("") only supports open = "w+" and open = "w+b": using the former</span></div><div class='output co'>#&gt; <span class='error'>Error in dirname(to): a character vector argument expected</span></div><div class='input'>
-</div></pre>
+    <pre class="examples"><div class='input'><span class='co'>## Not run: ------------------------------------</span>
+<span class='co'># library(dplyr)</span>
+<span class='co'># library(tibble)</span>
+<span class='co'># library(htmltools)</span>
+<span class='co'># library(DT)</span>
+<span class='co'># library(d3horizonR)</span>
+<span class='co'># library(treemap) # for helpful random hierarchical data function</span>
+<span class='co'># </span>
+<span class='co'># </span>
+<span class='co'># hier &lt;- tbl_df(treemap::random.hierarchical.data(depth=3))</span>
+<span class='co'># </span>
+<span class='co'># # see it in DT</span>
+<span class='co'># datatable(hier)</span>
+<span class='co'># </span>
+<span class='co'># # with dplyr make some random data for a horizon chart</span>
+<span class='co'># #   we can replace x with this new data</span>
+<span class='co'># hier &lt;- hier %&gt;%</span>
+<span class='co'>#   mutate(x = lapply(x, function(x) {cumprod(1 + runif(365, -0.05, 0.05))})) %&gt;%</span>
+<span class='co'>#   # tranform our new x into a d3horizon chart</span>
+<span class='co'>#   mutate(x = lapply(x, function(dat) {</span>
+<span class='co'>#     d3horizon_chr(</span>
+<span class='co'>#       list(dat),</span>
+<span class='co'>#       options = d3horizonOptions(height=20),</span>
+<span class='co'>#       width = 200</span>
+<span class='co'>#     )</span>
+<span class='co'>#   }))</span>
+<span class='co'># </span>
+<span class='co'># datatable(</span>
+<span class='co'>#   hier,</span>
+<span class='co'>#   escape = FALSE,</span>
+<span class='co'>#   options = list(</span>
+<span class='co'>#     columnDefs = list(list(width="200px", targets = 4)),</span>
+<span class='co'>#     fnDrawCallback = htmlwidgets::JS(</span>
+<span class='co'># '</span>
+<span class='co'># // not the best way but works fairly well</span>
+<span class='co'># function(){</span>
+<span class='co'>#   HTMLWidgets.staticRender();</span>
+<span class='co'># }</span>
+<span class='co'># '</span>
+<span class='co'>#     )</span>
+<span class='co'>#   )</span>
+<span class='co'># ) %&gt;%</span>
+<span class='co'>#   tagList(htmlwidgets::getDependency("d3horizon", "d3horizonR")) %&gt;%</span>
+<span class='co'>#   browsable()</span>
+<span class='co'>## ---------------------------------------------</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

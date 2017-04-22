@@ -11,4 +11,3 @@ d3horizonOptions(height = 80, title = "", colors = c("#313695", "#4575b4",
 \description{
 Options for d3horizon
 }
-

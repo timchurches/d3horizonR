@@ -3,6 +3,7 @@
 export(d3horizon)
 export(d3horizonOptions)
 export(d3horizonOutput)
+export(d3horizon_chr)
 export(renderD3horizon)
 import(htmltools)
 import(htmlwidgets)

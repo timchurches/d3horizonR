@@ -5,7 +5,7 @@
 \title{'d3.js' Horizon Chart 'htmlwidget'}
 \usage{
 d3horizon(data = NULL, options = d3horizonOptions(), width = NULL,
-  height = NULL, elementId = NULL)
+  height = "auto", elementId = NULL)
 }
 \description{
 Create a \code{d3.js} horizon chart using the \code{d3-horizon-chart}
@@ -27,4 +27,3 @@ d3horizon(
 )
 
 }
-

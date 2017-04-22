@@ -1,7 +1,7 @@
 Package: d3horizonR
 Title: Horizon Chart 'htmlwidget'
-Version: 0.0.0.9000
-Date: 2017-04-05
+Version: 0.0.1
+Date: 2017-04-22
 Authors@R: c(
       person(
         "Mike", "Bostock"
@@ -29,4 +29,5 @@ LazyData: true
 RoxygenNote: 6.0.1
 Imports:
     d3r,
-    htmltools
+    htmltools,
+    htmlwidgets
