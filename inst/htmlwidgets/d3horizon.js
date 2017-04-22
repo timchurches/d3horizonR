@@ -263,7 +263,8 @@ HTMLWidgets.widget({
 
         // bad hack to fit chart by forcing step
         //  need to fix this
-        horizonChart.step(el.getBoundingClientRect().width/x.data[0].length);
+        var width = x.options.width || el.getBoundingClientRect().width;
+        horizonChart.step(width/x.data[0].length);
 
         // brute force remove any previous horizons
         //  will need to improve this in future
