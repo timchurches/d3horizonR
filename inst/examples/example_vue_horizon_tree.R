@@ -63,8 +63,9 @@ var app = new Vue({
         function(d) {
           var instance = hzw.initialize(d);
           if(d.__data__) {
-            instance.renderValue({data: d.__data__, options:{width:200, height:30}});
+            instance.renderValue({data: d.__data__, options:{width:200, height:35}});
             d.querySelector('.horizon').style.display = 'inherit';
+            d.querySelector('canvas').style.verticalAlign = 'middle';
           }
         }
       )
