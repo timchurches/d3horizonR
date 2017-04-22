@@ -49,10 +49,10 @@ var app = new Vue({
   methods: {
     renderContent: function (createElement, x) {
       return createElement('div',
-        {style: {width: '200px', display: 'inline'}},
+        {style: {display: 'inline'}},
         [
           x.data.name,
-          createElement('div', {class: 'horizoncontainer', style: {width:'200px', display:'inline'}}, JSON.stringify(x.data.x))
+          createElement('div', {class: 'horizoncontainer', style: {display:'inline'}}, JSON.stringify(x.data.x))
         ]
       )
     },
@@ -71,7 +71,6 @@ var app = new Vue({
     }
   },
   mounted: function() {
-    var hzw = HTMLWidgets.widgets.filter(function(w) {return w.name === 'd3horizon'})[0];
     Array.prototype.forEach.call(
       this.$el.querySelectorAll('.horizoncontainer'),
       function(d) {
