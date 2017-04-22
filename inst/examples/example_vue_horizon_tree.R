@@ -1,6 +1,7 @@
 library(htmltools)
 library(vueR)
 library(d3horizonR)
+library(d3r)
 library(dplyr)
 library(tibble)
 
