@@ -17,7 +17,7 @@ element <- htmlDependency(
 rhd <- treemap::random.hierarchical.data()
 #change x to be a series of random data for a horizon
 rhd <- rhd %>%
-  mutate(x = lapply(x, function(x) {cumprod(1 + runif(365, -0.05, 0.05))}))
+  mutate(x = lapply(x, function(x) {cumprod(1 + runif(365, -0.05, 0.05)) - 1}))
 
 tl_tree <- tagList(
   tags$div(
@@ -63,7 +63,7 @@ var app = new Vue({
         function(d) {
           var instance = hzw.initialize(d);
           if(d.__data__) {
-            instance.renderValue({data: d.__data__, options:{width:200}});
+            instance.renderValue({data: d.__data__, options:{width:200, height:30}});
             d.querySelector('.horizon').style.display = 'inherit';
           }
         }
