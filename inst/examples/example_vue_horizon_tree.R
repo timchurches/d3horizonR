@@ -53,7 +53,7 @@ var app = new Vue({
         {style: {display: 'inline'}},
         [
           x.data.name,
-          createElement('div', {class: 'horizoncontainer', style: {display:'inline'}}, JSON.stringify(x.data.x))
+          createElement('div', {class: 'horizoncontainer', style: {display:'inline'}, domProps: {'__data__': [x.data.x]}})
         ]
       )
     },
@@ -63,7 +63,7 @@ var app = new Vue({
         open.$el.querySelectorAll('.horizoncontainer'),
         function(d) {
           var instance = hzw.initialize(d);
-          if(d.__data__) {
+          if(d.__data__[0]) {
             instance.renderValue({data: d.__data__, options:{width:200, height:35}});
             d.querySelector('.horizon').style.display = 'inherit';
             d.querySelector('canvas').style.verticalAlign = 'middle';
@@ -71,17 +71,6 @@ var app = new Vue({
         }
       )
     }
-  },
-  mounted: function() {
-    Array.prototype.forEach.call(
-      this.$el.querySelectorAll('.horizoncontainer'),
-      function(d) {
-        if(d.innerText.length > 0 && d.innerText !== '{}') {
-          d.__data__ = [JSON.parse(d.innerText)];
-        }
-        d.innerText = '';
-      }
-    )
   }
 })
 ",
